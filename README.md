@@ -22,15 +22,16 @@ funcionou com um único prompt; não significa nota máxima.
 
 <!-- leaderboard:start -->
 
-| # | Modelo | Harness | Reasoning | Nota | Status | Criação | Custo do participante | Vídeo |
+| # | Modelo | Ferramenta | Raciocínio | Nota | Autonomia | Tempo total | Custo | Vídeo |
 |---:|---|---|---|---:|---|---:|---:|---|
 | — | Nenhuma execução oficial publicada | — | — | — | — | — | — | — |
 
 <!-- leaderboard:end -->
 
 Quando existirem resultados, esta seção será atualizada a partir dos
-`results/*/result.json`. O custo exibido aqui será sempre o custo do participante;
-o custo dos juízes ficará no relatório detalhado.
+`results/*/result.json`. O tempo exibido será o tempo total usado pelo modelo na
+criação e, quando houver, na recuperação. O custo exibido será somente o da
+execução do participante; o custo dos juízes ficará no relatório detalhado.
 
 ## O que o modelo precisa criar
 

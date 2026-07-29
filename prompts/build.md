@@ -6,20 +6,12 @@ abaixo. Trabalhe de forma autônoma no diretório atual.
 Faça um plano curto para si mesmo e comece imediatamente. Não pare apenas no plano,
 não peça confirmação e não pergunte o que fazer em seguida. Use somente as
 ferramentas disponíveis nesta sessão. Se uma tentativa falhar, diagnostique,
-corrija e continue enquanto houver orçamento.
+corrija e continue até concluir a entrega.
 
-## Ambiente e limites
+## Ambiente
 
 - Sistema: Windows 11 x64 nativo.
 - Shell dos scripts npm: `cmd.exe`, sem `script-shell` alternativo.
-- Modelo: `{{MODEL_ID}}`.
-- Provider: `{{PROVIDER_ID}}`, sem fallback.
-- Reasoning: `{{REASONING_VARIANT}}`.
-- Limite de criação: `{{MAX_BUILD_MINUTES}}` minutos.
-- Limite de turnos: `{{MAX_TURNS}}`.
-- Teto financeiro do participante: US$ `{{MAX_PARTICIPANT_COST_USD}}`.
-
-Esses limites são cortes duros. Planeje e priorize o núcleo verificável.
 
 ## Regras de trabalho
 
