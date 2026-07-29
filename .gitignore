@@ -1,0 +1,35 @@
+# Dependencies and generated output
+node_modules/
+dist/
+coverage/
+.data/
+.cache/
+*.sqlite
+*.sqlite3
+*.db
+*.log
+npm-debug.log*
+*.tmp
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Raw benchmark material must remain private
+*.raw.log
+raw-logs/
+
+# Editors and operating system
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local workspaces never belong in the public repository
+/workspaces/
+/internal/

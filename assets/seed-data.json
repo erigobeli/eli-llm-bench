@@ -1,0 +1,311 @@
+{
+  "version": "1.0.0-draft",
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@eli-llm-bench.local",
+      "password": "EliLLMBench!2026",
+      "createdAt": "2026-07-01T12:00:00.000Z"
+    }
+  ],
+  "clients": [
+    {
+      "id": 1,
+      "name": "Nébula Tecnologia",
+      "type": "company",
+      "companyName": "Nébula Tecnologia LTDA",
+      "email": "contato@nebula.com.br",
+      "phone": "+55 11 90000-0001",
+      "status": "active",
+      "createdAt": "2026-07-16T12:00:00.000Z",
+      "updatedAt": "2026-07-16T12:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Marina Costa",
+      "type": "person",
+      "companyName": null,
+      "email": "marina.costa@example.com",
+      "phone": "+55 21 90000-0002",
+      "status": "lead",
+      "createdAt": "2026-07-15T12:00:00.000Z",
+      "updatedAt": "2026-07-15T12:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "Horizonte Arquitetura",
+      "type": "company",
+      "companyName": "Horizonte Arquitetura e Projetos LTDA",
+      "email": "oi@horizonte.arq.br",
+      "phone": "+55 31 90000-0003",
+      "status": "active",
+      "createdAt": "2026-07-14T12:00:00.000Z",
+      "updatedAt": "2026-07-14T12:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "name": "Rafael Martins",
+      "type": "person",
+      "companyName": null,
+      "email": "rafael.martins@example.com",
+      "phone": null,
+      "status": "inactive",
+      "createdAt": "2026-07-13T12:00:00.000Z",
+      "updatedAt": "2026-07-13T12:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "name": "Aurora Saúde",
+      "type": "company",
+      "companyName": "Aurora Saúde Integrada SA",
+      "email": "comercial@aurorasaude.com.br",
+      "phone": "+55 41 90000-0005",
+      "status": "lead",
+      "createdAt": "2026-07-12T12:00:00.000Z",
+      "updatedAt": "2026-07-12T12:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "name": "Camila Rocha",
+      "type": "person",
+      "companyName": null,
+      "email": "camila.rocha@example.com",
+      "phone": "+55 51 90000-0006",
+      "status": "active",
+      "createdAt": "2026-07-11T12:00:00.000Z",
+      "updatedAt": "2026-07-11T12:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "name": "Vértice Educação",
+      "type": "company",
+      "companyName": "Vértice Educação Digital LTDA",
+      "email": "parcerias@vertice.edu.br",
+      "phone": "+55 61 90000-0007",
+      "status": "active",
+      "createdAt": "2026-07-10T12:00:00.000Z",
+      "updatedAt": "2026-07-10T12:00:00.000Z"
+    },
+    {
+      "id": 8,
+      "name": "Lucas Almeida",
+      "type": "person",
+      "companyName": null,
+      "email": "lucas.almeida@example.com",
+      "phone": "+55 71 90000-0008",
+      "status": "lead",
+      "createdAt": "2026-07-09T12:00:00.000Z",
+      "updatedAt": "2026-07-09T12:00:00.000Z"
+    },
+    {
+      "id": 9,
+      "name": "Ponte Norte Logística",
+      "type": "company",
+      "companyName": "Ponte Norte Logística LTDA",
+      "email": "negocios@pontenorte.com.br",
+      "phone": "+55 81 90000-0009",
+      "status": "inactive",
+      "createdAt": "2026-07-08T12:00:00.000Z",
+      "updatedAt": "2026-07-08T12:00:00.000Z"
+    },
+    {
+      "id": 10,
+      "name": "Beatriz Nunes",
+      "type": "person",
+      "companyName": null,
+      "email": "beatriz.nunes@example.com",
+      "phone": null,
+      "status": "active",
+      "createdAt": "2026-07-07T12:00:00.000Z",
+      "updatedAt": "2026-07-07T12:00:00.000Z"
+    },
+    {
+      "id": 11,
+      "name": "Cais Criativo",
+      "type": "company",
+      "companyName": "Cais Criativo Design LTDA",
+      "email": "studio@caiscriativo.com.br",
+      "phone": "+55 85 90000-0011",
+      "status": "lead",
+      "createdAt": "2026-07-06T12:00:00.000Z",
+      "updatedAt": "2026-07-06T12:00:00.000Z"
+    },
+    {
+      "id": 12,
+      "name": "João Pedro Lima",
+      "type": "person",
+      "companyName": null,
+      "email": "joao.lima@example.com",
+      "phone": "+55 91 90000-0012",
+      "status": "active",
+      "createdAt": "2026-07-05T12:00:00.000Z",
+      "updatedAt": "2026-07-05T12:00:00.000Z"
+    },
+    {
+      "id": 13,
+      "name": "Sereno Alimentos",
+      "type": "company",
+      "companyName": "Sereno Alimentos Naturais LTDA",
+      "email": "vendas@serenoalimentos.com.br",
+      "phone": "+55 27 90000-0013",
+      "status": "inactive",
+      "createdAt": "2026-07-04T12:00:00.000Z",
+      "updatedAt": "2026-07-04T12:00:00.000Z"
+    },
+    {
+      "id": 14,
+      "name": "Ana Clara Freitas",
+      "type": "person",
+      "companyName": null,
+      "email": "ana.freitas@example.com",
+      "phone": "+55 19 90000-0014",
+      "status": "lead",
+      "createdAt": "2026-07-03T12:00:00.000Z",
+      "updatedAt": "2026-07-03T12:00:00.000Z"
+    },
+    {
+      "id": 15,
+      "name": "Lume Energia",
+      "type": "company",
+      "companyName": "Lume Energia Renovável SA",
+      "email": "projetos@lumeenergia.com.br",
+      "phone": "+55 48 90000-0015",
+      "status": "active",
+      "createdAt": "2026-07-02T12:00:00.000Z",
+      "updatedAt": "2026-07-02T12:00:00.000Z"
+    },
+    {
+      "id": 16,
+      "name": "Gustavo Ribeiro",
+      "type": "person",
+      "companyName": null,
+      "email": "gustavo.ribeiro@example.com",
+      "phone": null,
+      "status": "inactive",
+      "createdAt": "2026-07-01T12:00:00.000Z",
+      "updatedAt": "2026-07-01T12:00:00.000Z"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": 1,
+      "title": "Diagnóstico de processos",
+      "clientId": 2,
+      "description": "Mapeamento inicial e recomendações.",
+      "valueInCents": 50000,
+      "stage": "new",
+      "priority": "medium",
+      "expectedCloseDate": "2026-08-12",
+      "createdAt": "2026-07-10T10:00:00.000Z",
+      "updatedAt": "2026-07-10T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "Portal de atendimento",
+      "clientId": 5,
+      "description": null,
+      "valueInCents": 100000,
+      "stage": "new",
+      "priority": "high",
+      "expectedCloseDate": "2026-08-18",
+      "createdAt": "2026-07-09T10:00:00.000Z",
+      "updatedAt": "2026-07-09T10:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "title": "Redesenho da marca",
+      "clientId": 11,
+      "description": "Identidade visual e manual de aplicação.",
+      "valueInCents": 120000,
+      "stage": "contacted",
+      "priority": "medium",
+      "expectedCloseDate": "2026-08-22",
+      "createdAt": "2026-07-08T10:00:00.000Z",
+      "updatedAt": "2026-07-08T10:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "title": "Automação comercial",
+      "clientId": 7,
+      "description": "Integração do funil com os canais de entrada.",
+      "valueInCents": 172000,
+      "stage": "contacted",
+      "priority": "high",
+      "expectedCloseDate": "2026-09-05",
+      "createdAt": "2026-07-07T10:00:00.000Z",
+      "updatedAt": "2026-07-07T10:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "title": "Implantação do sistema",
+      "clientId": 1,
+      "description": "Configuração, migração e treinamento.",
+      "valueInCents": 125050,
+      "stage": "proposal",
+      "priority": "high",
+      "expectedCloseDate": "2026-08-20",
+      "createdAt": "2026-07-06T10:00:00.000Z",
+      "updatedAt": "2026-07-06T10:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "title": "Aplicativo de acompanhamento",
+      "clientId": 3,
+      "description": null,
+      "valueInCents": 174950,
+      "stage": "proposal",
+      "priority": "medium",
+      "expectedCloseDate": "2026-09-12",
+      "createdAt": "2026-07-05T10:00:00.000Z",
+      "updatedAt": "2026-07-05T10:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "title": "Painel executivo",
+      "clientId": 6,
+      "description": "Indicadores de operação e receita.",
+      "valueInCents": 150000,
+      "stage": "won",
+      "priority": "high",
+      "expectedCloseDate": "2026-07-30",
+      "createdAt": "2026-07-04T10:00:00.000Z",
+      "updatedAt": "2026-07-04T10:00:00.000Z"
+    },
+    {
+      "id": 8,
+      "title": "Consultoria de expansão",
+      "clientId": 9,
+      "description": null,
+      "valueInCents": 160000,
+      "stage": "won",
+      "priority": "medium",
+      "expectedCloseDate": "2026-07-28",
+      "createdAt": "2026-07-03T10:00:00.000Z",
+      "updatedAt": "2026-07-03T10:00:00.000Z"
+    },
+    {
+      "id": 9,
+      "title": "Workshop de inovação",
+      "clientId": 10,
+      "description": "Imersão de um dia para a equipe.",
+      "valueInCents": 48000,
+      "stage": "lost",
+      "priority": "low",
+      "expectedCloseDate": "2026-07-25",
+      "createdAt": "2026-07-02T10:00:00.000Z",
+      "updatedAt": "2026-07-02T10:00:00.000Z"
+    },
+    {
+      "id": 10,
+      "title": "Auditoria de experiência",
+      "clientId": 15,
+      "description": null,
+      "valueInCents": 50000,
+      "stage": "lost",
+      "priority": "low",
+      "expectedCloseDate": "2026-07-20",
+      "createdAt": "2026-07-01T10:00:00.000Z",
+      "updatedAt": "2026-07-01T10:00:00.000Z"
+    }
+  ]
+}

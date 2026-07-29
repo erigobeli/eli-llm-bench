@@ -1,0 +1,35 @@
+{
+  "name": "Eli LLM Bench",
+  "repository": "eli-llm-bench",
+  "version": "0.1-draft",
+  "environment": {
+    "operatingSystem": "Windows 11 x64",
+    "npmScriptShell": "cmd.exe",
+    "workspaceRoot": "E:\\DATA\\04-PROJETOS\\eli-llm-bench\\workspaces"
+  },
+  "limits": {
+    "maxBuildTimeMinutes": null,
+    "maxRecoveryTimeMinutes": null,
+    "maxTurns": null,
+    "maxParticipantCostUsd": null,
+    "nullPolicy": "runner_must_refuse"
+  },
+  "execution": {
+    "hardCutoff": true,
+    "providerFallback": false,
+    "npmCachePolicy": "prewarm_before_timer"
+  },
+  "artifacts": {
+    "seedFile": "assets/seed-data.json",
+    "seedSha256": "bd4d4d5d14cb639a2d1c750b17d89906cd18daa4d97019db0cd0f5a6f890b921"
+  },
+  "ranking": {
+    "displayedCost": "participant",
+    "displayedTime": "buildTotalMs"
+  },
+  "sqliteDriver": {
+    "package": "better-sqlite3",
+    "version": "12.10.0",
+    "status": "verified_windows_prebuild"
+  }
+}

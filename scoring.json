@@ -1,0 +1,130 @@
+{
+  "$schema": "./schemas/scoring.schema.json",
+  "version": "0.2-draft",
+  "status": "draft",
+  "totals": {
+    "automatic": 80,
+    "subjective": 20,
+    "maximum": 100
+  },
+  "recoveryPenalty": {
+    "1P": 0,
+    "2P": -5,
+    "minimumFinalScore": 0
+  },
+  "automaticCategories": [
+    {
+      "id": "setup",
+      "name": "Instalação, banco, build e inicialização",
+      "points": 8,
+      "rationale": "Sem uma aplicação executável, os demais comportamentos não podem ser comprovados."
+    },
+    {
+      "id": "authentication",
+      "name": "Autenticação e proteção",
+      "points": 8,
+      "rationale": "Login e isolamento das rotas são parte do núcleo do produto."
+    },
+    {
+      "id": "clients",
+      "name": "Clientes",
+      "points": 12,
+      "rationale": "Clientes são o primeiro recurso principal do CRM."
+    },
+    {
+      "id": "opportunities",
+      "name": "Oportunidades",
+      "points": 12,
+      "rationale": "Oportunidades são o segundo recurso principal e dependem da integridade do vínculo com clientes."
+    },
+    {
+      "id": "pipeline",
+      "name": "Pipeline e persistência de etapa",
+      "points": 10,
+      "rationale": "O fluxo visual persistente diferencia o desafio de um CRUD simples."
+    },
+    {
+      "id": "dashboard",
+      "name": "Dashboard calculado",
+      "points": 8,
+      "rationale": "Agregações coerentes comprovam leitura e cálculo a partir do banco."
+    },
+    {
+      "id": "validation_security",
+      "name": "Validação, integridade e segurança",
+      "points": 12,
+      "rationale": "Protege dados, sessões e reprodutibilidade da aplicação."
+    },
+    {
+      "id": "ux_accessibility",
+      "name": "Fluxos de interface, responsividade e acessibilidade",
+      "points": 10,
+      "rationale": "Verifica usabilidade objetiva sem pontuar gosto visual."
+    }
+  ],
+  "subjectiveCategories": [
+    {
+      "id": "visual_experience",
+      "name": "Experiência visual",
+      "points": 10
+    },
+    {
+      "id": "engineering",
+      "name": "Arquitetura e engenharia",
+      "points": 10
+    }
+  ],
+  "checks": [
+    { "id": "setup.install", "category": "setup", "points": 1, "requirements": ["REQ-SETUP-INSTALL"], "requires": [], "critical": false },
+    { "id": "setup.database", "category": "setup", "points": 2, "requirements": ["REQ-SETUP-DATABASE"], "requires": ["setup.install"], "critical": false },
+    { "id": "setup.build", "category": "setup", "points": 2, "requirements": ["REQ-SETUP-BUILD"], "requires": ["setup.install"], "critical": false },
+    { "id": "setup.start", "category": "setup", "points": 2, "requirements": ["REQ-SETUP-START"], "requires": ["setup.install", "setup.database", "setup.build"], "critical": true },
+    { "id": "setup.stack", "category": "setup", "points": 1, "requirements": ["REQ-SETUP-STACK"], "requires": ["setup.install", "setup.build"], "critical": false },
+
+    { "id": "auth.login", "category": "authentication", "points": 3, "requirements": ["REQ-AUTH-LOGIN"], "requires": ["setup.start"], "critical": true },
+    { "id": "auth.ui_protection", "category": "authentication", "points": 1, "requirements": ["REQ-AUTH-UI-PROTECTION"], "requires": ["setup.start"], "critical": true },
+    { "id": "auth.api_protection", "category": "authentication", "points": 1, "requirements": ["REQ-AUTH-API-PROTECTION"], "requires": ["setup.start"], "critical": true },
+    { "id": "auth.logout", "category": "authentication", "points": 1, "requirements": ["REQ-AUTH-LOGOUT"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "auth.session_security", "category": "authentication", "points": 2, "requirements": ["REQ-AUTH-SESSION-SECURITY"], "requires": ["setup.start", "auth.login"], "critical": false },
+
+    { "id": "clients.create", "category": "clients", "points": 2, "requirements": ["REQ-CLIENT-CREATE"], "requires": ["setup.start", "auth.login"], "critical": true },
+    { "id": "clients.read", "category": "clients", "points": 1, "requirements": ["REQ-CLIENT-READ"], "requires": ["setup.start", "auth.login"], "critical": true },
+    { "id": "clients.update", "category": "clients", "points": 2, "requirements": ["REQ-CLIENT-UPDATE"], "requires": ["setup.start", "auth.login"], "critical": true },
+    { "id": "clients.delete", "category": "clients", "points": 1, "requirements": ["REQ-CLIENT-DELETE"], "requires": ["setup.start", "auth.login"], "critical": true },
+    { "id": "clients.search_filter", "category": "clients", "points": 2, "requirements": ["REQ-CLIENT-SEARCH-FILTER"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "clients.delete_blocked", "category": "clients", "points": 2, "requirements": ["REQ-CLIENT-DELETE-BLOCKED"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "clients.validation", "category": "clients", "points": 2, "requirements": ["REQ-CLIENT-VALIDATION"], "requires": ["setup.start", "auth.login"], "critical": false },
+
+    { "id": "opportunities.create", "category": "opportunities", "points": 2, "requirements": ["REQ-OPPORTUNITY-CREATE"], "requires": ["setup.start", "auth.login"], "critical": true },
+    { "id": "opportunities.read", "category": "opportunities", "points": 1, "requirements": ["REQ-OPPORTUNITY-READ"], "requires": ["setup.start", "auth.login"], "critical": true },
+    { "id": "opportunities.update", "category": "opportunities", "points": 2, "requirements": ["REQ-OPPORTUNITY-UPDATE"], "requires": ["setup.start", "auth.login"], "critical": true },
+    { "id": "opportunities.delete", "category": "opportunities", "points": 1, "requirements": ["REQ-OPPORTUNITY-DELETE"], "requires": ["setup.start", "auth.login"], "critical": true },
+    { "id": "opportunities.search_filter", "category": "opportunities", "points": 2, "requirements": ["REQ-OPPORTUNITY-SEARCH-FILTER"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "opportunities.relationship", "category": "opportunities", "points": 2, "requirements": ["REQ-OPPORTUNITY-RELATIONSHIP"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "opportunities.validation", "category": "opportunities", "points": 2, "requirements": ["REQ-OPPORTUNITY-VALIDATION"], "requires": ["setup.start", "auth.login"], "critical": false },
+
+    { "id": "pipeline.columns", "category": "pipeline", "points": 2, "requirements": ["REQ-PIPELINE-COLUMNS"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "pipeline.stage_change", "category": "pipeline", "points": 3, "requirements": ["REQ-PIPELINE-STAGE-CHANGE"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "pipeline.persistence", "category": "pipeline", "points": 5, "requirements": ["REQ-PIPELINE-PERSISTENCE"], "requires": ["setup.start", "auth.login"], "critical": true },
+
+    { "id": "dashboard.counts", "category": "dashboard", "points": 3, "requirements": ["REQ-DASHBOARD-COUNTS"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "dashboard.values", "category": "dashboard", "points": 3, "requirements": ["REQ-DASHBOARD-VALUES"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "dashboard.by_stage", "category": "dashboard", "points": 2, "requirements": ["REQ-DASHBOARD-BY-STAGE"], "requires": ["setup.start", "auth.login"], "critical": false },
+
+    { "id": "security.error_contract", "category": "validation_security", "points": 2, "requirements": ["REQ-SAFE-ERROR-CONTRACT"], "requires": ["setup.start"], "critical": false },
+    { "id": "security.unknown_fields", "category": "validation_security", "points": 2, "requirements": ["REQ-SAFE-UNKNOWN-FIELDS"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "security.immutable_fields", "category": "validation_security", "points": 2, "requirements": ["REQ-SAFE-IMMUTABLE-FIELDS"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "data.db_path", "category": "validation_security", "points": 2, "requirements": ["REQ-DATA-DB-PATH"], "requires": ["setup.install"], "critical": false },
+    { "id": "data.migrations", "category": "validation_security", "points": 1, "requirements": ["REQ-DATA-MIGRATIONS"], "requires": ["setup.install"], "critical": false },
+    { "id": "security.secrets", "category": "validation_security", "points": 1, "requirements": ["REQ-SECURITY-SECRETS"], "requires": [], "critical": false },
+    { "id": "data.format_order", "category": "validation_security", "points": 2, "requirements": ["REQ-SAFE-FORMAT-ORDER", "REQ-SAFE-LOCALE"], "requires": ["setup.start", "auth.login"], "critical": false },
+
+    { "id": "ux.client_flow", "category": "ux_accessibility", "points": 2, "requirements": ["REQ-UX-CLIENT-FLOW"], "requires": ["setup.start", "auth.login"], "critical": true },
+    { "id": "ux.opportunity_flow", "category": "ux_accessibility", "points": 2, "requirements": ["REQ-UX-OPPORTUNITY-FLOW"], "requires": ["setup.start", "auth.login"], "critical": true },
+    { "id": "ux.filters", "category": "ux_accessibility", "points": 1, "requirements": ["REQ-UX-FILTERS"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "ux.feedback", "category": "ux_accessibility", "points": 2, "requirements": ["REQ-UX-FEEDBACK"], "requires": ["setup.start", "auth.login"], "critical": false },
+    { "id": "ux.responsive", "category": "ux_accessibility", "points": 1, "requirements": ["REQ-UX-RESPONSIVE"], "requires": ["setup.start"], "critical": false },
+    { "id": "ux.accessibility", "category": "ux_accessibility", "points": 1, "requirements": ["REQ-UX-ACCESSIBILITY"], "requires": ["setup.start"], "critical": false },
+    { "id": "ux.console", "category": "ux_accessibility", "points": 1, "requirements": ["REQ-UX-CONSOLE"], "requires": ["setup.start", "auth.login"], "critical": false }
+  ]
+}

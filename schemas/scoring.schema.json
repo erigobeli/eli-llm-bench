@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eli-llm-bench:schema:scoring",
+  "title": "Eli LLM Bench scoring",
+  "type": "object",
+  "required": [
+    "version",
+    "status",
+    "totals",
+    "recoveryPenalty",
+    "automaticCategories",
+    "subjectiveCategories",
+    "checks"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string" },
+    "status": { "enum": ["draft", "frozen"] },
+    "totals": {
+      "type": "object",
+      "required": ["automatic", "subjective", "maximum"],
+      "properties": {
+        "automatic": { "const": 80 },
+        "subjective": { "const": 20 },
+        "maximum": { "const": 100 }
+      },
+      "additionalProperties": false
+    },
+    "recoveryPenalty": {
+      "type": "object",
+      "required": ["1P", "2P", "minimumFinalScore"],
+      "properties": {
+        "1P": { "const": 0 },
+        "2P": { "type": "number", "maximum": 0 },
+        "minimumFinalScore": { "const": 0 }
+      },
+      "additionalProperties": false
+    },
+    "automaticCategories": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/category" }
+    },
+    "subjectiveCategories": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/category" }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "category", "points", "requirements", "requires", "critical"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+          "category": { "type": "string", "minLength": 1 },
+          "points": { "type": "number", "exclusiveMinimum": 0 },
+          "requirements": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "pattern": "^REQ-[A-Z0-9-]+$" }
+          },
+          "requires": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "critical": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "category": {
+      "type": "object",
+      "required": ["id", "name", "points"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "points": { "type": "number", "minimum": 0 },
+        "rationale": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
