@@ -113,10 +113,11 @@ function buildLeaderboard(results) {
       const video = result.links.video
         ? `[Assistir](${encodeURI(result.links.video)})`
         : "—";
+      const model = `[${escapeCell(result.model.id)}](./results/${encodeURI(result.runId)}/report.md)`;
       lines.push(
         [
           `| ${index + 1}`,
-          escapeCell(result.model.id),
+          model,
           escapeCell(result.model.provider),
           escapeCell(result.model.reasoning),
           `${result.score.earned}/100`,

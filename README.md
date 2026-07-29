@@ -30,13 +30,13 @@ específica.
 
 | # | Modelo | Provider | Raciocínio | Nota | Tempo | Custo | Vídeo |
 |---:|---|---|---|---:|---:|---:|---|
-| — | Nenhuma execução oficial publicada | — | — | — | — | — | — |
+| 1 | [anthropic/claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 44m 52s | US$ 4.04 | — |
 
 <!-- leaderboard:end -->
 
 `Custo` é somente o valor cobrado pela criação do projeto. `Tempo` vai do envio
 do prompt ao encerramento da sessão. `Vídeo` aponta para a demonstração publicada
-no YouTube.
+no YouTube. Clique no nome do modelo para abrir o relatório completo da execução.
 
 ## O desafio
 
