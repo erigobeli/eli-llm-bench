@@ -19,3 +19,13 @@ results/<run-id>/
 Correções feitas depois da avaliação não substituem silenciosamente o projeto
 pontuado. Uma execução inválida pode ser preservada para auditoria, mas não entra
 no ranking principal.
+
+Depois de criar ou revisar um `result.json`, execute na raiz pública:
+
+```powershell
+node .\scripts\update-ranking.mjs
+```
+
+O script atualiza a tabela do README a partir dos resultados completos. A nota
+vem exclusivamente do avaliador externo; o script apenas publica e ordena os
+metadados já registrados.

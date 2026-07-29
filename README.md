@@ -210,6 +210,42 @@ internal/evaluator/.artifacts/<run-id>/
 `evaluation.json` contém a pontuação por check. `report.md` apresenta o
 resultado em linguagem mais simples para uso no vídeo e na publicação.
 
+### 4. Publicar o resultado e atualizar o ranking
+
+Você não pede a outra IA para dar a nota. O comando do passo anterior executa o
+avaliador determinístico e já produz a nota e a explicação de cada check.
+
+Depois da avaliação, o operador monta:
+
+```text
+public/results/<run-id>/
+├── result.json
+├── report.md
+├── screenshots/
+└── project/
+```
+
+O `result.json` combina a nota do `evaluation.json` com tempo, custo, tokens,
+turnos e configuração extraídos da sessão exportada do OpenCode. Seu formato é
+definido por [`schemas/result.schema.json`](./schemas/result.schema.json).
+
+Antes de publicar, revise se o projeto e o relatório não contêm chaves, cookies,
+arquivos `.env`, caminhos pessoais ou logs brutos. Em seguida, dentro de
+`public/`, execute:
+
+```powershell
+node .\scripts\update-ranking.mjs
+```
+
+O script lê todos os `results/*/result.json`, considera somente resultados
+`COMPLETE`, ordena por nota, custo e tempo e reescreve exclusivamente a seção
+delimitada do ranking neste README. Ele não cria a nota e não chama uma IA.
+
+Na primeira execução oficial, a montagem do `result.json` será conferida
+manualmente contra a exportação do OpenCode. Depois de conhecermos o formato
+real dessa exportação, essa conversão poderá ser automatizada sem alterar a
+metodologia nem a pontuação.
+
 ## O que o resultado não prova
 
 Este benchmark possui limitações deliberadas:
