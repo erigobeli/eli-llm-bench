@@ -1,5 +1,26 @@
 # Histórico da especificação
 
+## Não publicado
+
+- Direção visual reformulada como CRM empresarial inspirado no padrão de
+  produto do Salesforce Lightning, sem copiar sua marca ou instalar o SLDS.
+- A referência adotou navegação compacta, tema claro, tabelas densas e
+  componentes visuais mais sóbrios, sem alterar funcionalidades ou pontuação.
+
+## 1.0 compacto — 2026-07-29
+
+- Escopo reduzido para Mini CRM sem autenticação.
+- Mantidos clientes, negócios, pipeline, indicadores, SQLite e interface.
+- Adicionadas busca e paginação nas duas listagens e filtros de etapa e cliente
+  nos negócios, sem criar novos módulos ou aumentar os 20 checks.
+- Pontuação alterada para 20 checks automáticos somando 100.
+- Removidos juiz de IA, recuperação, `1P`/`2P`, dossiê e sanitização da v1.
+- Prompt oficial reduzido a uma única mensagem.
+- Limites preenchidos em 60 minutos, 150 turnos e US$ 8.
+- Avaliador passou a gravar `evaluation.json` e `report.md` por `run-id`.
+- Aplicação de referência compacta obteve 100/100 três vezes consecutivas.
+- Contrato completo anterior preservado na tag `pilot-full-spec`.
+
 ## Nome público — 2026-07-28
 
 - Projeto renomeado de EliBench para **Eli LLM Bench**.

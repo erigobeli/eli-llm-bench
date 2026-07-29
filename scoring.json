@@ -1,130 +1,217 @@
 {
   "$schema": "./schemas/scoring.schema.json",
-  "version": "0.2-draft",
+  "version": "1.0.0-draft",
   "status": "draft",
-  "totals": {
-    "automatic": 80,
-    "subjective": 20,
-    "maximum": 100
-  },
-  "recoveryPenalty": {
-    "1P": 0,
-    "2P": -5,
-    "minimumFinalScore": 0
-  },
-  "automaticCategories": [
-    {
-      "id": "setup",
-      "name": "Instalação, banco, build e inicialização",
-      "points": 8,
-      "rationale": "Sem uma aplicação executável, os demais comportamentos não podem ser comprovados."
-    },
-    {
-      "id": "authentication",
-      "name": "Autenticação e proteção",
-      "points": 8,
-      "rationale": "Login e isolamento das rotas são parte do núcleo do produto."
-    },
-    {
-      "id": "clients",
-      "name": "Clientes",
-      "points": 12,
-      "rationale": "Clientes são o primeiro recurso principal do CRM."
-    },
-    {
-      "id": "opportunities",
-      "name": "Oportunidades",
-      "points": 12,
-      "rationale": "Oportunidades são o segundo recurso principal e dependem da integridade do vínculo com clientes."
-    },
-    {
-      "id": "pipeline",
-      "name": "Pipeline e persistência de etapa",
-      "points": 10,
-      "rationale": "O fluxo visual persistente diferencia o desafio de um CRUD simples."
-    },
-    {
-      "id": "dashboard",
-      "name": "Dashboard calculado",
-      "points": 8,
-      "rationale": "Agregações coerentes comprovam leitura e cálculo a partir do banco."
-    },
-    {
-      "id": "validation_security",
-      "name": "Validação, integridade e segurança",
-      "points": 12,
-      "rationale": "Protege dados, sessões e reprodutibilidade da aplicação."
-    },
-    {
-      "id": "ux_accessibility",
-      "name": "Fluxos de interface, responsividade e acessibilidade",
-      "points": 10,
-      "rationale": "Verifica usabilidade objetiva sem pontuar gosto visual."
-    }
-  ],
-  "subjectiveCategories": [
-    {
-      "id": "visual_experience",
-      "name": "Experiência visual",
-      "points": 10
-    },
-    {
-      "id": "engineering",
-      "name": "Arquitetura e engenharia",
-      "points": 10
-    }
+  "total": 100,
+  "categories": [
+    { "id": "setup", "name": "Instalação e execução", "points": 14 },
+    { "id": "clients", "name": "API de clientes", "points": 18 },
+    { "id": "deals", "name": "API de negócios", "points": 23 },
+    { "id": "metrics", "name": "Indicadores", "points": 8 },
+    { "id": "pipeline", "name": "Pipeline", "points": 17 },
+    { "id": "ui", "name": "Fluxos da interface", "points": 15 },
+    { "id": "quality", "name": "Testes e documentação", "points": 5 }
   ],
   "checks": [
-    { "id": "setup.install", "category": "setup", "points": 1, "requirements": ["REQ-SETUP-INSTALL"], "requires": [], "critical": false },
-    { "id": "setup.database", "category": "setup", "points": 2, "requirements": ["REQ-SETUP-DATABASE"], "requires": ["setup.install"], "critical": false },
-    { "id": "setup.build", "category": "setup", "points": 2, "requirements": ["REQ-SETUP-BUILD"], "requires": ["setup.install"], "critical": false },
-    { "id": "setup.start", "category": "setup", "points": 2, "requirements": ["REQ-SETUP-START"], "requires": ["setup.install", "setup.database", "setup.build"], "critical": true },
-    { "id": "setup.stack", "category": "setup", "points": 1, "requirements": ["REQ-SETUP-STACK"], "requires": ["setup.install", "setup.build"], "critical": false },
-
-    { "id": "auth.login", "category": "authentication", "points": 3, "requirements": ["REQ-AUTH-LOGIN"], "requires": ["setup.start"], "critical": true },
-    { "id": "auth.ui_protection", "category": "authentication", "points": 1, "requirements": ["REQ-AUTH-UI-PROTECTION"], "requires": ["setup.start"], "critical": true },
-    { "id": "auth.api_protection", "category": "authentication", "points": 1, "requirements": ["REQ-AUTH-API-PROTECTION"], "requires": ["setup.start"], "critical": true },
-    { "id": "auth.logout", "category": "authentication", "points": 1, "requirements": ["REQ-AUTH-LOGOUT"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "auth.session_security", "category": "authentication", "points": 2, "requirements": ["REQ-AUTH-SESSION-SECURITY"], "requires": ["setup.start", "auth.login"], "critical": false },
-
-    { "id": "clients.create", "category": "clients", "points": 2, "requirements": ["REQ-CLIENT-CREATE"], "requires": ["setup.start", "auth.login"], "critical": true },
-    { "id": "clients.read", "category": "clients", "points": 1, "requirements": ["REQ-CLIENT-READ"], "requires": ["setup.start", "auth.login"], "critical": true },
-    { "id": "clients.update", "category": "clients", "points": 2, "requirements": ["REQ-CLIENT-UPDATE"], "requires": ["setup.start", "auth.login"], "critical": true },
-    { "id": "clients.delete", "category": "clients", "points": 1, "requirements": ["REQ-CLIENT-DELETE"], "requires": ["setup.start", "auth.login"], "critical": true },
-    { "id": "clients.search_filter", "category": "clients", "points": 2, "requirements": ["REQ-CLIENT-SEARCH-FILTER"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "clients.delete_blocked", "category": "clients", "points": 2, "requirements": ["REQ-CLIENT-DELETE-BLOCKED"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "clients.validation", "category": "clients", "points": 2, "requirements": ["REQ-CLIENT-VALIDATION"], "requires": ["setup.start", "auth.login"], "critical": false },
-
-    { "id": "opportunities.create", "category": "opportunities", "points": 2, "requirements": ["REQ-OPPORTUNITY-CREATE"], "requires": ["setup.start", "auth.login"], "critical": true },
-    { "id": "opportunities.read", "category": "opportunities", "points": 1, "requirements": ["REQ-OPPORTUNITY-READ"], "requires": ["setup.start", "auth.login"], "critical": true },
-    { "id": "opportunities.update", "category": "opportunities", "points": 2, "requirements": ["REQ-OPPORTUNITY-UPDATE"], "requires": ["setup.start", "auth.login"], "critical": true },
-    { "id": "opportunities.delete", "category": "opportunities", "points": 1, "requirements": ["REQ-OPPORTUNITY-DELETE"], "requires": ["setup.start", "auth.login"], "critical": true },
-    { "id": "opportunities.search_filter", "category": "opportunities", "points": 2, "requirements": ["REQ-OPPORTUNITY-SEARCH-FILTER"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "opportunities.relationship", "category": "opportunities", "points": 2, "requirements": ["REQ-OPPORTUNITY-RELATIONSHIP"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "opportunities.validation", "category": "opportunities", "points": 2, "requirements": ["REQ-OPPORTUNITY-VALIDATION"], "requires": ["setup.start", "auth.login"], "critical": false },
-
-    { "id": "pipeline.columns", "category": "pipeline", "points": 2, "requirements": ["REQ-PIPELINE-COLUMNS"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "pipeline.stage_change", "category": "pipeline", "points": 3, "requirements": ["REQ-PIPELINE-STAGE-CHANGE"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "pipeline.persistence", "category": "pipeline", "points": 5, "requirements": ["REQ-PIPELINE-PERSISTENCE"], "requires": ["setup.start", "auth.login"], "critical": true },
-
-    { "id": "dashboard.counts", "category": "dashboard", "points": 3, "requirements": ["REQ-DASHBOARD-COUNTS"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "dashboard.values", "category": "dashboard", "points": 3, "requirements": ["REQ-DASHBOARD-VALUES"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "dashboard.by_stage", "category": "dashboard", "points": 2, "requirements": ["REQ-DASHBOARD-BY-STAGE"], "requires": ["setup.start", "auth.login"], "critical": false },
-
-    { "id": "security.error_contract", "category": "validation_security", "points": 2, "requirements": ["REQ-SAFE-ERROR-CONTRACT"], "requires": ["setup.start"], "critical": false },
-    { "id": "security.unknown_fields", "category": "validation_security", "points": 2, "requirements": ["REQ-SAFE-UNKNOWN-FIELDS"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "security.immutable_fields", "category": "validation_security", "points": 2, "requirements": ["REQ-SAFE-IMMUTABLE-FIELDS"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "data.db_path", "category": "validation_security", "points": 2, "requirements": ["REQ-DATA-DB-PATH"], "requires": ["setup.install"], "critical": false },
-    { "id": "data.migrations", "category": "validation_security", "points": 1, "requirements": ["REQ-DATA-MIGRATIONS"], "requires": ["setup.install"], "critical": false },
-    { "id": "security.secrets", "category": "validation_security", "points": 1, "requirements": ["REQ-SECURITY-SECRETS"], "requires": [], "critical": false },
-    { "id": "data.format_order", "category": "validation_security", "points": 2, "requirements": ["REQ-SAFE-FORMAT-ORDER", "REQ-SAFE-LOCALE"], "requires": ["setup.start", "auth.login"], "critical": false },
-
-    { "id": "ux.client_flow", "category": "ux_accessibility", "points": 2, "requirements": ["REQ-UX-CLIENT-FLOW"], "requires": ["setup.start", "auth.login"], "critical": true },
-    { "id": "ux.opportunity_flow", "category": "ux_accessibility", "points": 2, "requirements": ["REQ-UX-OPPORTUNITY-FLOW"], "requires": ["setup.start", "auth.login"], "critical": true },
-    { "id": "ux.filters", "category": "ux_accessibility", "points": 1, "requirements": ["REQ-UX-FILTERS"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "ux.feedback", "category": "ux_accessibility", "points": 2, "requirements": ["REQ-UX-FEEDBACK"], "requires": ["setup.start", "auth.login"], "critical": false },
-    { "id": "ux.responsive", "category": "ux_accessibility", "points": 1, "requirements": ["REQ-UX-RESPONSIVE"], "requires": ["setup.start"], "critical": false },
-    { "id": "ux.accessibility", "category": "ux_accessibility", "points": 1, "requirements": ["REQ-UX-ACCESSIBILITY"], "requires": ["setup.start"], "critical": false },
-    { "id": "ux.console", "category": "ux_accessibility", "points": 1, "requirements": ["REQ-UX-CONSOLE"], "requires": ["setup.start", "auth.login"], "critical": false }
+    {
+      "id": "setup.install",
+      "category": "setup",
+      "points": 2,
+      "requirements": ["REQ-SETUP-INSTALL"],
+      "requires": [],
+      "title": "Instalação",
+      "passText": "As dependências foram instaladas sem flags de contorno.",
+      "failText": "A instalação das dependências falhou ou usou flags proibidas."
+    },
+    {
+      "id": "setup.database",
+      "category": "setup",
+      "points": 3,
+      "requirements": ["REQ-SETUP-DATABASE"],
+      "requires": ["setup.install"],
+      "title": "Preparação do banco",
+      "passText": "O banco foi recriado duas vezes com o seed correto.",
+      "failText": "A preparação do banco falhou, duplicou ou ignorou o DB_PATH."
+    },
+    {
+      "id": "setup.build",
+      "category": "setup",
+      "points": 4,
+      "requirements": ["REQ-SETUP-BUILD"],
+      "requires": ["setup.install"],
+      "title": "Build de produção",
+      "passText": "O frontend e o servidor foram compilados para produção.",
+      "failText": "O build de produção não terminou corretamente."
+    },
+    {
+      "id": "setup.start",
+      "category": "setup",
+      "points": 5,
+      "requirements": ["REQ-SETUP-START"],
+      "requires": ["setup.database", "setup.build"],
+      "title": "Inicialização",
+      "passText": "A aplicação iniciou e serviu API e interface na mesma origem.",
+      "failText": "A aplicação não iniciou ou não respondeu ao health."
+    },
+    {
+      "id": "clients.create",
+      "category": "clients",
+      "points": 5,
+      "requirements": ["REQ-CLIENT-CREATE"],
+      "requires": ["setup.start"],
+      "title": "Criação de cliente",
+      "passText": "Um cliente válido foi criado e persistido.",
+      "failText": "A API não criou um cliente válido corretamente."
+    },
+    {
+      "id": "clients.read",
+      "category": "clients",
+      "points": 4,
+      "requirements": ["REQ-CLIENT-READ"],
+      "requires": ["setup.start"],
+      "title": "Listagem de clientes",
+      "passText": "A listagem, a busca e a paginação de clientes refletiram o banco.",
+      "failText": "A listagem, a busca ou a paginação de clientes ficou incorreta."
+    },
+    {
+      "id": "clients.update",
+      "category": "clients",
+      "points": 4,
+      "requirements": ["REQ-CLIENT-UPDATE"],
+      "requires": ["setup.start"],
+      "title": "Edição de cliente",
+      "passText": "A atualização parcial preservou os demais campos.",
+      "failText": "A edição do cliente perdeu campos ou não persistiu."
+    },
+    {
+      "id": "clients.delete",
+      "category": "clients",
+      "points": 5,
+      "requirements": ["REQ-CLIENT-DELETE"],
+      "requires": ["setup.start"],
+      "title": "Exclusão e integridade de clientes",
+      "passText": "A exclusão funcionou sem corromper negócios relacionados.",
+      "failText": "A exclusão de cliente violou a regra de integridade."
+    },
+    {
+      "id": "deals.create",
+      "category": "deals",
+      "points": 6,
+      "requirements": ["REQ-DEAL-CREATE"],
+      "requires": ["setup.start"],
+      "title": "Criação de negócio",
+      "passText": "Um negócio válido foi criado e ligado ao cliente correto.",
+      "failText": "A criação do negócio ou seu relacionamento falhou."
+    },
+    {
+      "id": "deals.read",
+      "category": "deals",
+      "points": 4,
+      "requirements": ["REQ-DEAL-READ"],
+      "requires": ["setup.start"],
+      "title": "Listagem de negócios",
+      "passText": "A listagem, a busca, os filtros e a paginação de negócios refletiram o banco.",
+      "failText": "A listagem, a busca, os filtros ou a paginação de negócios ficou incorreta."
+    },
+    {
+      "id": "deals.update",
+      "category": "deals",
+      "points": 5,
+      "requirements": ["REQ-DEAL-UPDATE"],
+      "requires": ["setup.start"],
+      "title": "Edição de negócio",
+      "passText": "A atualização parcial do negócio persistiu corretamente.",
+      "failText": "A edição do negócio perdeu campos ou não persistiu."
+    },
+    {
+      "id": "deals.delete",
+      "category": "deals",
+      "points": 4,
+      "requirements": ["REQ-DEAL-DELETE"],
+      "requires": ["setup.start"],
+      "title": "Exclusão de negócio",
+      "passText": "O negócio solicitado foi excluído sem afetar outros dados.",
+      "failText": "A exclusão do negócio falhou ou removeu dados indevidos."
+    },
+    {
+      "id": "deals.validation",
+      "category": "deals",
+      "points": 4,
+      "requirements": ["REQ-DEAL-VALIDATION"],
+      "requires": ["setup.start"],
+      "title": "Validação de negócios",
+      "passText": "Dados e relacionamentos inválidos foram recusados.",
+      "failText": "A API aceitou um negócio inválido ou gravou dados parciais."
+    },
+    {
+      "id": "metrics.accuracy",
+      "category": "metrics",
+      "points": 8,
+      "requirements": ["REQ-METRICS-ACCURACY"],
+      "requires": ["setup.start"],
+      "title": "Precisão dos indicadores",
+      "passText": "Os indicadores acompanharam exatamente os dados persistidos.",
+      "failText": "Os indicadores ficaram diferentes dos dados da API."
+    },
+    {
+      "id": "pipeline.render",
+      "category": "pipeline",
+      "points": 6,
+      "requirements": ["REQ-PIPELINE-RENDER"],
+      "requires": ["setup.start"],
+      "title": "Visualização do pipeline",
+      "passText": "As quatro etapas e seus cartões apareceram na ordem correta.",
+      "failText": "O pipeline omitiu etapas, cartões ou usou a ordem errada."
+    },
+    {
+      "id": "pipeline.persistence",
+      "category": "pipeline",
+      "points": 11,
+      "requirements": ["REQ-PIPELINE-PERSISTENCE"],
+      "requires": ["setup.start"],
+      "title": "Persistência do pipeline",
+      "passText": "A nova etapa permaneceu salva após reiniciar o servidor.",
+      "failText": "A mudança de etapa se perdeu após reiniciar o servidor."
+    },
+    {
+      "id": "ui.client_flow",
+      "category": "ui",
+      "points": 5,
+      "requirements": ["REQ-UI-CLIENT-FLOW"],
+      "requires": ["setup.start"],
+      "title": "Fluxo visual de clientes",
+      "passText": "CRUD, busca, paginação e visualização dos negócios do cliente funcionaram.",
+      "failText": "O CRUD, a busca, a paginação ou os negócios do cliente falharam na interface."
+    },
+    {
+      "id": "ui.deal_flow",
+      "category": "ui",
+      "points": 5,
+      "requirements": ["REQ-UI-DEAL-FLOW"],
+      "requires": ["setup.start"],
+      "title": "Fluxo visual de negócios",
+      "passText": "CRUD, busca, filtros e paginação de negócios funcionaram pela interface.",
+      "failText": "O CRUD, a busca, os filtros ou a paginação de negócios falhou na interface."
+    },
+    {
+      "id": "ui.feedback",
+      "category": "ui",
+      "points": 5,
+      "requirements": ["REQ-UI-FEEDBACK"],
+      "requires": ["setup.start"],
+      "title": "Feedback e responsividade",
+      "passText": "Erros e estados foram visíveis e a interface respondeu bem no celular.",
+      "failText": "Faltou feedback visual ou a interface apresentou problema no celular."
+    },
+    {
+      "id": "quality.tests_docs",
+      "category": "quality",
+      "points": 5,
+      "requirements": ["REQ-QUALITY-TESTS-DOCS"],
+      "requires": ["setup.install"],
+      "title": "Testes e documentação",
+      "passText": "Os testes essenciais passaram e o README explicou os comandos.",
+      "failText": "Os testes essenciais ou a documentação ficaram incompletos."
+    }
   ]
 }

@@ -1,35 +1,40 @@
-# Eli LLM Bench — Prompt de Construção
+# Eli LLM Bench v1 — Prompt de construção
 
-Você é o único agente responsável por implementar o projeto descrito no contrato
-abaixo. Trabalhe de forma autônoma no diretório atual.
+Construa integralmente a aplicação descrita no contrato incluído abaixo. Trabalhe
+de forma autônoma no diretório atual.
 
-Faça um plano curto para si mesmo e comece imediatamente. Não pare apenas no plano,
-não peça confirmação e não pergunte o que fazer em seguida. Use somente as
-ferramentas disponíveis nesta sessão. Se uma tentativa falhar, diagnostique,
-corrija e continue até concluir a entrega.
+Faça um plano curto para si mesmo e comece imediatamente. Não responda apenas com
+o plano, não peça confirmação e não pergunte o que fazer em seguida. Se algo
+falhar, diagnostique, corrija e continue enquanto houver orçamento.
 
-## Ambiente
+## Ambiente e limites
 
 - Sistema: Windows 11 x64 nativo.
-- Shell dos scripts npm: `cmd.exe`, sem `script-shell` alternativo.
+- Shell dos scripts npm: `cmd.exe`.
+- Provider: OpenRouter, sem fallback.
+- Reasoning: `high` ou o equivalente mais próximo disponível.
+- Tempo máximo: `{{MAX_BUILD_MINUTES}}` minutos.
+- Máximo de turnos: `{{MAX_TURNS}}`.
+- Teto financeiro: US$ `{{MAX_PARTICIPANT_COST_USD}}`.
+
+Esses limites são cortes duros. Priorize primeiro instalação, banco, API,
+persistência e os fluxos principais da interface.
 
 ## Regras de trabalho
 
-- Crie e modifique somente o projeto no diretório atual.
-- Não crie uma segunda aplicação nem use diretório pai.
-- O workspace começa apenas com os artefatos explicitamente fornecidos.
-- Não altere `seed-data.json`; hash esperado: `{{SEED_SHA256}}`.
-- Não exponha, imprima, copie ou versione segredos.
-- Conclua implementação, testes internos, build e validação possível dentro da
-  mesma sessão.
-
-## Contrato
-
-O texto entre os marcadores é a única fonte dos requisitos do produto.
+- Use somente as ferramentas disponíveis na sessão.
+- Trabalhe apenas no diretório atual.
+- Não altere `seed-data.json`.
+- O SHA-256 esperado do seed é `{{SEED_SHA256}}`.
+- Não exponha segredos, credenciais privadas ou conteúdo de configurações locais.
+- Use scripts portáveis para o ambiente Windows descrito no contrato.
+- Valide `npm install`, `npm run db:setup`, `npm test`, `npm run build` e
+  `npm start`.
+- Ao validar o servidor, inicie-o temporariamente em segundo plano, verifique o
+  health, encerre o processo e continue. Não deixe um processo persistente
+  bloqueando a sessão.
+- Termine com um resumo curto do que foi entregue e dos comandos executados.
 
 <ELI_LLM_BENCH_CONTRACT>
 {{CONTRACT}}
 </ELI_LLM_BENCH_CONTRACT>
-
-Implemente agora. Encerre somente quando considerar a entrega concluída ou quando
-um bloqueio impossível de resolver dentro do workspace impedir progresso real.

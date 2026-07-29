@@ -8,15 +8,13 @@
     "runId",
     "benchmarkVersion",
     "model",
-    "deliveryStatus",
     "resultStatus",
     "terminationReason",
     "score",
     "timing",
     "cost",
     "usage",
-    "automaticChecks",
-    "judging",
+    "checks",
     "links"
   ],
   "properties": {
@@ -35,15 +33,7 @@
       },
       "additionalProperties": false
     },
-    "deliveryStatus": {
-      "anyOf": [
-        { "enum": ["1P", "2P", "FAIL"] },
-        { "type": "null" }
-      ]
-    },
-    "resultStatus": {
-      "enum": ["COMPLETE", "PARTIAL", "INVALID"]
-    },
+    "resultStatus": { "enum": ["COMPLETE", "INVALID"] },
     "terminationReason": {
       "enum": [
         "completed",
@@ -56,64 +46,31 @@
     },
     "score": {
       "type": "object",
-      "required": ["automatic", "subjective", "recoveryPenalty", "total"],
+      "required": ["earned", "maximum"],
       "properties": {
-        "automatic": { "type": "number", "minimum": 0, "maximum": 80 },
-        "subjective": {
-          "anyOf": [
-            { "type": "number", "minimum": 0, "maximum": 20 },
-            { "type": "null" }
-          ]
-        },
-        "recoveryPenalty": { "type": "number", "minimum": -100, "maximum": 0 },
-        "total": {
-          "anyOf": [
-            { "type": "number", "minimum": 0, "maximum": 100 },
-            { "type": "null" }
-          ]
-        }
+        "earned": { "type": "number", "minimum": 0, "maximum": 100 },
+        "maximum": { "const": 100 }
       },
       "additionalProperties": false
     },
     "timing": {
       "type": "object",
-      "required": [
-        "startedAt",
-        "endedAt",
-        "buildRound1Ms",
-        "recoveryMs",
-        "buildTotalMs",
-        "evaluationTotalMs",
-        "benchmarkTotalMs"
-      ],
+      "required": ["startedAt", "endedAt", "buildTotalMs", "evaluationTotalMs"],
       "properties": {
         "startedAt": { "type": "string", "format": "date-time" },
         "endedAt": { "type": "string", "format": "date-time" },
-        "buildRound1Ms": { "$ref": "#/$defs/nonNegativeInteger" },
-        "recoveryMs": { "$ref": "#/$defs/nonNegativeInteger" },
         "buildTotalMs": { "$ref": "#/$defs/nonNegativeInteger" },
-        "evaluationTotalMs": { "$ref": "#/$defs/nonNegativeInteger" },
-        "benchmarkTotalMs": { "$ref": "#/$defs/nonNegativeInteger" }
+        "evaluationTotalMs": { "$ref": "#/$defs/nonNegativeInteger" }
       },
       "additionalProperties": false
     },
     "cost": {
       "type": "object",
-      "required": [
-        "currency",
-        "participant",
-        "judging",
-        "total",
-        "limit",
-        "limitAppliesTo"
-      ],
+      "required": ["currency", "participant", "limit", "source"],
       "properties": {
         "currency": { "const": "USD" },
         "participant": { "type": "number", "minimum": 0 },
-        "judging": { "type": "number", "minimum": 0 },
-        "total": { "type": "number", "minimum": 0 },
         "limit": { "type": "number", "exclusiveMinimum": 0 },
-        "limitAppliesTo": { "const": "participant" },
         "source": { "type": "string" }
       },
       "additionalProperties": false
@@ -138,34 +95,7 @@
       },
       "additionalProperties": false
     },
-    "limits": {
-      "type": "object",
-      "required": [
-        "maxBuildTimeMinutes",
-        "maxRecoveryTimeMinutes",
-        "maxTurns",
-        "maxParticipantCostUsd"
-      ],
-      "properties": {
-        "maxBuildTimeMinutes": { "type": "number", "exclusiveMinimum": 0 },
-        "maxRecoveryTimeMinutes": { "type": "number", "exclusiveMinimum": 0 },
-        "maxTurns": { "type": "integer", "minimum": 1 },
-        "maxParticipantCostUsd": { "type": "number", "exclusiveMinimum": 0 }
-      },
-      "additionalProperties": false
-    },
-    "environment": {
-      "type": "object",
-      "required": ["operatingSystem", "node", "npm", "openCode"],
-      "properties": {
-        "operatingSystem": { "type": "string" },
-        "node": { "type": "string" },
-        "npm": { "type": "string" },
-        "openCode": { "type": "string" }
-      },
-      "additionalProperties": false
-    },
-    "automaticChecks": {
+    "checks": {
       "type": "array",
       "items": {
         "type": "object",
@@ -175,27 +105,11 @@
           "status": { "enum": ["passed", "failed", "skipped"] },
           "pointsAvailable": { "type": "number", "minimum": 0 },
           "pointsAwarded": { "type": "number", "minimum": 0 },
-          "summary": { "type": "string", "minLength": 1, "maxLength": 500 },
-          "technicalDetails": {
-            "type": "array",
-            "maxItems": 5,
-            "items": { "type": "string", "minLength": 1, "maxLength": 500 }
-          }
+          "summary": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "string" }
         },
         "additionalProperties": false
       }
-    },
-    "judging": {
-      "type": "object",
-      "properties": {
-        "status": { "enum": ["complete", "partial", "not_run"] },
-        "validJudgeIds": {
-          "type": "array",
-          "items": { "type": "string" }
-        },
-        "reserveUsed": { "type": "boolean" }
-      },
-      "additionalProperties": false
     },
     "links": {
       "type": "object",
@@ -205,13 +119,6 @@
         "project": { "type": "string" }
       },
       "additionalProperties": false
-    },
-    "hashes": {
-      "type": "object",
-      "additionalProperties": {
-        "type": "string",
-        "pattern": "^[a-fA-F0-9]{64}$"
-      }
     }
   },
   "$defs": {
