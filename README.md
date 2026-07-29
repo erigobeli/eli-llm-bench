@@ -31,6 +31,7 @@ específica.
 | # | Modelo | Provider | Raciocínio | Nota | Tempo | Custo | Vídeo |
 |---:|---|---|---|---:|---:|---:|---|
 | 1 | [anthropic/claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 44m 52s | US$ 4.04 | — |
+| 2 | [anthropic/claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 20s | US$ 2.54 | — |
 
 <!-- leaderboard:end -->
 
