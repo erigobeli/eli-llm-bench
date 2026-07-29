@@ -31,9 +31,10 @@ específica.
 | # | Modelo | Provider | Raciocínio | Nota | Tempo | Custo | Vídeo |
 |---:|---|---|---|---:|---:|---:|---|
 | 1 | [anthropic/claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 44m 52s | US$ 4.04 | — |
-| 2 | [anthropic/claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 15s | US$ 1.46 | — |
-| 3 | [anthropic/claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 20s | US$ 2.54 | — |
-| 4 | [anthropic/claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | openrouter | high | 87/100 | 13m 6s | US$ 1.20 | — |
+| 2 | [anthropic/claude-fable-5](./results/claude-fable-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 9m 46s | US$ 4.53 | — |
+| 3 | [anthropic/claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 15s | US$ 1.46 | — |
+| 4 | [anthropic/claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 20s | US$ 2.54 | — |
+| 5 | [anthropic/claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | openrouter | high | 87/100 | 13m 6s | US$ 1.20 | — |
 
 <!-- leaderboard:end -->
 
