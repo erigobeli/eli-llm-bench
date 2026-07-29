@@ -11,7 +11,7 @@ results/<run-id>/
 ```
 
 - `result.json` contém modelo, configuração, nota, tempo, custo, uso e o estado
-  dos 20 checks;
+  dos 22 checks;
 - `report.md` explica o resultado em linguagem simples;
 - `screenshots/` guarda evidências visuais selecionadas;
 - `project/` contém o código entregue pelo modelo no encerramento oficial.

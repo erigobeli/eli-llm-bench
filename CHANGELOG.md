@@ -10,6 +10,28 @@
 - Planejamento pendente consolidado no status do README, sem um roadmap
   duplicado.
 - Caminho público do workspace alterado para uma referência portátil.
+- Pré-voo passou a liberar a porta `3000` quando o processo residual pertence a
+  um workspace anterior e a bloquear o início quando pertence a outro programa.
+- Avaliador desacoplado da paginação, dos textos, do feedback e da navegação
+  específicos da referência; checks de API também deixaram de falhar em
+  cascata quando outro check independente reprova.
+- Primeiro piloto compacto reavaliado em **100/100**, sem alterar o projeto
+  produzido; a referência permaneceu em **100/100** em mais três execuções.
+- Regra de caixa do e-mail esclarecida sem impor normalização cosmética.
+- Persistência do pipeline passou a aceitar select ou drag-and-drop, mantendo a
+  mesma exigência de gravação no SQLite e sobrevivência ao restart.
+- Interações por botões e paginação que oculta controles quando há apenas uma
+  página passaram a ser reconhecidas sem favorecer um componente específico.
+- Confirmações visuais em modal personalizado passaram a ser reconhecidas mesmo
+  sem `role="dialog"`.
+- Os 11 pontos de persistência do pipeline foram divididos em 6 pontos para
+  mudança funcional por qualquer controle e 5 pontos específicos para
+  drag-and-drop, mantendo o total em 100.
+- Nome do produto fixado como **CRMBench Modelo**, verificado no título do
+  navegador e na marca visível por um check próprio de 1 ponto.
+- Listagens visuais fixadas em 4 registros por página, garantindo que os
+  controles de paginação apareçam com o seed oficial, sem fixtures artificiais
+  do avaliador.
 
 ## 1.0 compacto — 2026-07-29
 

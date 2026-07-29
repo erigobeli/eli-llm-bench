@@ -166,12 +166,22 @@
     {
       "id": "pipeline.persistence",
       "category": "pipeline",
-      "points": 11,
+      "points": 6,
       "requirements": ["REQ-PIPELINE-PERSISTENCE"],
       "requires": ["setup.start"],
       "title": "Persistência do pipeline",
       "passText": "A nova etapa permaneceu salva após reiniciar o servidor.",
       "failText": "A mudança de etapa se perdeu após reiniciar o servidor."
+    },
+    {
+      "id": "pipeline.drag_drop",
+      "category": "pipeline",
+      "points": 5,
+      "requirements": ["REQ-PIPELINE-DRAG-DROP"],
+      "requires": ["setup.start"],
+      "title": "Drag-and-drop do pipeline",
+      "passText": "Um cartão pôde ser arrastado e permaneceu na nova etapa.",
+      "failText": "O pipeline não permitiu mover e persistir um cartão por drag-and-drop."
     },
     {
       "id": "ui.client_flow",
@@ -180,8 +190,8 @@
       "requirements": ["REQ-UI-CLIENT-FLOW"],
       "requires": ["setup.start"],
       "title": "Fluxo visual de clientes",
-      "passText": "CRUD, busca, paginação e visualização dos negócios do cliente funcionaram.",
-      "failText": "O CRUD, a busca, a paginação ou os negócios do cliente falharam na interface."
+      "passText": "CRUD, busca, paginação visível de 4 itens e visualização dos negócios do cliente funcionaram.",
+      "failText": "O CRUD, a busca, a paginação visível de 4 itens ou os negócios do cliente falharam na interface."
     },
     {
       "id": "ui.deal_flow",
@@ -190,18 +200,28 @@
       "requirements": ["REQ-UI-DEAL-FLOW"],
       "requires": ["setup.start"],
       "title": "Fluxo visual de negócios",
-      "passText": "CRUD, busca, filtros e paginação de negócios funcionaram pela interface.",
-      "failText": "O CRUD, a busca, os filtros ou a paginação de negócios falhou na interface."
+      "passText": "CRUD, busca, filtros e paginação visível de 4 itens funcionaram pela interface.",
+      "failText": "O CRUD, a busca, os filtros ou a paginação visível de 4 itens falhou na interface."
     },
     {
       "id": "ui.feedback",
       "category": "ui",
-      "points": 5,
+      "points": 4,
       "requirements": ["REQ-UI-FEEDBACK"],
       "requires": ["setup.start"],
       "title": "Feedback e responsividade",
       "passText": "Erros e estados foram visíveis e a interface respondeu bem no celular.",
       "failText": "Faltou feedback visual ou a interface apresentou problema no celular."
+    },
+    {
+      "id": "ui.app_name",
+      "category": "ui",
+      "points": 1,
+      "requirements": ["REQ-UI-APP-NAME"],
+      "requires": ["setup.start"],
+      "title": "Nome da aplicação",
+      "passText": "O produto foi identificado como CRMBench Modelo.",
+      "failText": "O título ou a marca visível não usou CRMBench Modelo."
     },
     {
       "id": "quality.tests_docs",

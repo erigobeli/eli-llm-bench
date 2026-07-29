@@ -42,12 +42,13 @@ no YouTube.
 
 O modelo precisa construir um Mini CRM em português do Brasil com:
 
+- nome **CRMBench Modelo** no navegador e na interface;
 - cadastro, edição e exclusão de clientes;
 - cadastro, edição e exclusão de negócios;
-- busca e paginação nas listagens;
+- busca e paginação visível com 4 registros por página nas listagens;
 - filtros de negócios e visualização dos negócios de cada cliente;
 - quatro etapas comerciais em um pipeline;
-- mudança de etapa persistida no SQLite;
+- mudança de etapa persistida no SQLite, incluindo drag-and-drop;
 - três indicadores calculados a partir do banco;
 - interface responsiva com visual de CRM empresarial;
 - API, validações, build e uma pequena suíte de testes.
@@ -64,7 +65,7 @@ Esse mesmo contrato é inserido integralmente no prompt de todos os participante
 
 A nota vai de 0 a 100 e é totalmente objetiva. Não existe juiz de IA na v1.
 
-O [scoring.json](./scoring.json) publica os 20 checks, seus pesos e o requisito
+O [scoring.json](./scoring.json) publica os 22 checks, seus pesos e o requisito
 correspondente. O código do avaliador fica privado durante a temporada, mas ele
 só pode pontuar comportamentos anunciados no contrato e no scoring.
 
@@ -84,6 +85,11 @@ Os checks cobrem:
 Cada check passa e recebe todos os seus pontos, falha e recebe zero, ou fica
 `skipped` quando uma dependência física não funcionou. Por exemplo: sem a
 aplicação iniciar, não existe evidência possível de que o CRUD visual funciona.
+
+No pipeline, os 17 pontos são graduais: 6 verificam as colunas e cartões, 6
+verificam se alguma interação visual muda e persiste a etapa, e 5 exigem
+especificamente drag-and-drop persistente. Assim, botões ou select funcionais
+recebem parte dos pontos, mas não substituem a experiência de arrastar cartões.
 
 O avaliador também gera um `report.md` automático, em linguagem acessível,
 explicando o que funcionou e o que falhou. Evidência técnica aparece somente
@@ -116,6 +122,94 @@ Configuração da v1:
 Tempo e custo são metadados e não mudam a nota. Consulte
 [RUN_PROTOCOL.md](./RUN_PROTOCOL.md) para as regras completas.
 
+## Receita para executar um modelo
+
+Os comandos abaixo pressupõem a estrutura local do operador, com `public/`,
+`internal/` e `workspaces/` dentro de `eli-llm-bench/`. Substitua `<run-id>` por
+um identificador único, por exemplo
+`claude-haiku__subscription__2026-07-29`.
+
+### 1. Preparar o workspace
+
+Abra o PowerShell na raiz local do projeto:
+
+```powershell
+cd C:\caminho\para\eli-llm-bench
+```
+
+Atualize o template com o contrato, os limites e o seed vigentes:
+
+```powershell
+.\internal\runner\prepare-template.ps1
+```
+
+Crie a pasta da nova execução sem alterar o `_template`:
+
+```powershell
+Copy-Item -Recurse .\workspaces\_template .\workspaces\<run-id>
+```
+
+Imediatamente antes de abrir o agente, execute o pré-voo:
+
+```powershell
+.\internal\runner\preflight.ps1
+```
+
+O pré-voo encerra apenas um servidor residual pertencente aos workspaces do
+benchmark. Se outro programa estiver usando a porta `3000`, ele interrompe o
+procedimento para que o conflito seja resolvido antes de consumir tokens.
+
+### 2. Criar a aplicação com o OpenCode
+
+Entre na pasta vazia em que o modelo deve construir a aplicação:
+
+```powershell
+cd .\workspaces\<run-id>\project
+opencode --pure --auto
+```
+
+Dentro do OpenCode:
+
+1. Use `/model` e selecione o modelo e o provider exatos.
+2. Selecione raciocínio `high`, ou o equivalente mais próximo disponível.
+3. Confirme que o fallback de provider está desligado.
+4. Copie todo o conteúdo de `..\prompt.txt` e envie uma única vez.
+5. Não envie correções nem intervenha até a sessão terminar ou atingir um
+   limite.
+
+Ao final, exporte a sessão antes de fechar o OpenCode. A exportação será usada
+para registrar tempo, custo, tokens, turnos e chamadas de ferramentas.
+
+### 3. Gerar a nota
+
+Volte à raiz e execute novamente o pré-voo para remover um servidor que tenha
+ficado aberto:
+
+```powershell
+cd C:\caminho\para\eli-llm-bench
+.\internal\runner\preflight.ps1
+```
+
+Entre no avaliador privado e teste o projeto gerado:
+
+```powershell
+cd .\internal\evaluator
+npm run evaluate -- --project ..\..\workspaces\<run-id>\project --run-id <run-id>
+```
+
+Esse comando instala, prepara o banco, compila, inicia e testa uma cópia
+descartável do projeto. O código produzido pelo modelo não é modificado. O
+resultado fica em:
+
+```text
+internal/evaluator/.artifacts/<run-id>/
+├── evaluation.json
+└── report.md
+```
+
+`evaluation.json` contém a pontuação por check. `report.md` apresenta o
+resultado em linguagem mais simples para uso no vídeo e na publicação.
+
 ## O que o resultado não prova
 
 Este benchmark possui limitações deliberadas:
@@ -146,6 +240,10 @@ Sua função é testar o próprio benchmark: se uma implementação conhecida co
 correta não atingir 100/100, o defeito está no contrato ou no avaliador. A
 referência compacta atingiu **100/100 em três execuções limpas consecutivas**
 antes do primeiro teste oficial.
+
+Pilotos com implementações independentes ajudaram a remover do avaliador
+suposições sobre textos, paginação e componentes específicos. Eles são usados
+somente para calibrar o instrumento e não aparecem no ranking oficial.
 
 ## Transparência
 
@@ -202,10 +300,10 @@ código de uma execução oficial só é publicado depois de copiado para
 ## Status
 
 - [x] Escopo compacto definido.
-- [x] Contrato, seed, prompt e 20 checks objetivos preparados.
+- [x] Contrato, seed, prompt e 22 checks objetivos preparados.
 - [x] Avaliador externo implementado.
 - [x] Aplicação de referência validada três vezes em 100/100.
-- [ ] Piloto barato do fluxo compacto.
+- [x] Piloto barato do fluxo compacto.
 - [ ] Primeiras execuções oficiais.
 - [ ] Tag pública `v1.0.0`.
 
@@ -216,7 +314,7 @@ A principal inspiração metodológica foi o
 Fábio Akita: comparar agentes fazendo todos construírem o mesmo sistema real.
 
 O Eli LLM Bench aplica esse princípio a um desenho próprio: Mini CRM em Node e
-React, 20 verificações externas valendo 100 pontos, um único prompt e publicação
+React, 22 verificações externas valendo 100 pontos, um único prompt e publicação
 de custo, tempo, uso e código produzido.
 
 ## Licença

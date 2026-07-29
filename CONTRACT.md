@@ -15,6 +15,10 @@ testa somente comportamentos descritos aqui.
 Crie no diretório atual um Mini CRM em português do Brasil. A aplicação deve
 gerenciar clientes e negócios comerciais e exibir os negócios em um pipeline.
 
+O nome obrigatório do produto é **CRMBench Modelo**. Use esse texto exatamente
+no título do navegador e como marca visível na interface. Não substitua
+“Modelo” pelo nome do modelo de IA participante.
+
 Não crie uma segunda aplicação, não escreva fora do workspace e não implemente
 autenticação.
 
@@ -104,7 +108,8 @@ O seed contém cinco clientes e oito negócios. Com o seed intacto:
 Regras:
 
 - `name`: obrigatório, de 2 a 80 caracteres depois de `trim`;
-- `email`: obrigatório, formato válido e único sem diferenciar maiúsculas;
+- `email`: obrigatório, formato válido, sem espaços externos e único sem
+  diferenciar maiúsculas; a aplicação pode preservar ou normalizar a caixa;
 - `company`: opcional; ausente retorna `null`;
 - datas: ISO 8601 UTC.
 
@@ -165,7 +170,8 @@ Resposta da listagem:
 Um cliente com negócios relacionados não pode ser excluído: a API retorna `409`
 e não remove nenhum dado.
 
-**REQ-CLIENT-CREATE** — criação válida persiste todos os campos normalizados.
+**REQ-CLIENT-CREATE** — criação válida persiste nome, e-mail e empresa sem
+espaços externos; comparações de e-mail ignoram maiúsculas e minúsculas.
 
 **REQ-CLIENT-READ** — a listagem reflete os clientes persistidos; busca e
 paginação retornam resultados e metadados corretos.
@@ -244,7 +250,12 @@ A interface deve:
 - exibir confirmação antes de excluir;
 - usar formulários com labels e atributos `name`.
 - oferecer busca e paginação nas telas de clientes e negócios;
+- limitar as duas listagens visuais a exatamente `4` registros por página,
+  solicitando `pageSize=4` à API; com o seed intacto, clientes e negócios já
+  exibem controles de paginação funcionais na primeira abertura, identificados
+  de forma acessível como **Anterior** e **Próxima**;
 - oferecer filtros de etapa e cliente na tela de negócios.
+- permitir ver, a partir de cada cliente, seus negócios relacionados.
 
 ### 7.1 Direção visual
 
@@ -268,7 +279,6 @@ sem copiar marca, logotipo, textos ou componentes proprietários.
 Não instale o Salesforce Lightning Design System nem copie sua identidade
 visual. A inspiração é o padrão de produto empresarial, implementado com o CSS
 da própria aplicação.
-- permitir ver, a partir de cada cliente, seus negócios relacionados.
 
 Os seguintes seletores públicos são permitidos para itens repetidos:
 
@@ -283,17 +293,27 @@ Os seguintes seletores públicos são permitidos para itens repetidos:
 contato, Proposta e Fechado, com todos os cartões na etapa correta.
 
 **REQ-PIPELINE-PERSISTENCE** — mudar a etapa pela interface persiste no SQLite e
+continua correta depois de encerrar e iniciar novamente o servidor. O controle
+pode ser select, botões, drag-and-drop ou outra interação visual equivalente.
+
+**REQ-PIPELINE-DRAG-DROP** — além de qualquer controle alternativo, o usuário
+consegue arrastar um cartão entre as colunas; a nova etapa persiste no SQLite e
 continua correta depois de encerrar e iniciar novamente o servidor.
 
 **REQ-UI-CLIENT-FLOW** — criar, buscar, paginar, editar e excluir cliente pela
-interface atualiza a tela e o banco; a ação Ver negócios mostra somente os
+interface atualiza a tela e o banco; a listagem usa `4` registros por página
+com controles Anterior e Próxima; a ação Ver negócios mostra somente os
 negócios relacionados ao cliente escolhido.
 
 **REQ-UI-DEAL-FLOW** — criar, buscar, filtrar, paginar, editar e excluir negócio
-pela interface atualiza a tela e o banco.
+pela interface atualiza a tela e o banco; a listagem usa `4` registros por
+página com controles Anterior e Próxima.
 
 **REQ-UI-FEEDBACK** — validação inválida aparece na tela; confirmação, sucesso,
 erro e estado vazio são visíveis; não há rolagem horizontal nas duas viewports.
+
+**REQ-UI-APP-NAME** — o título do navegador e a marca visível usam exatamente
+`CRMBench Modelo`.
 
 ## 8. Testes e documentação
 

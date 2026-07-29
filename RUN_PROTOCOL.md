@@ -29,14 +29,20 @@ aviso adicional e o projeto existente é avaliado como foi entregue.
 
 1. Confirmar Windows, Node, npm e OpenCode nas versões registradas.
 2. Confirmar acesso ao modelo e fallback desligado.
-3. Criar um workspace limpo a partir de `workspaces/_template`.
-4. Copiar o seed oficial e conferir seu SHA-256.
-5. Montar `prompt.txt` com `prompts/build.md` e `CONTRACT.md`.
-6. Registrar hashes do prompt, contrato, seed e scoring.
-7. Registrar o instante inicial com relógio monotônico.
+3. Confirmar que a porta oficial `3000` está livre; processo residual de um
+   workspace anterior é encerrado antes da sessão, e processo externo bloqueia
+   o início até intervenção do operador.
+4. Criar um workspace limpo a partir de `workspaces/_template`.
+5. Copiar o seed oficial e conferir seu SHA-256.
+6. Montar `prompt.txt` com `prompts/build.md` e `CONTRACT.md`.
+7. Registrar hashes do prompt, contrato, seed e scoring.
+8. Registrar o instante inicial com relógio monotônico.
 
 O cache npm pode ser pré-aquecido antes do instante inicial. Nenhum arquivo do
 projeto pode ser criado nesse pré-aquecimento.
+
+O pré-voo de porta também ocorre antes do instante inicial e não consome tempo
+nem tokens do participante.
 
 ## 4. Execução
 
@@ -88,7 +94,7 @@ Estados de check:
 - `failed`: recebe zero;
 - `skipped`: não pôde ser executado por dependência física e recebe zero.
 
-Não existe nota parcial dentro de um check. Os 20 checks somam 100 pontos.
+Não existe nota parcial dentro de um check. Os 22 checks somam 100 pontos.
 
 ## 7. Artefatos
 
