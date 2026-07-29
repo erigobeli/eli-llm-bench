@@ -6,6 +6,10 @@
   produto do Salesforce Lightning, sem copiar sua marca ou instalar o SLDS.
 - A referência adotou navegação compacta, tema claro, tabelas densas e
   componentes visuais mais sóbrios, sem alterar funcionalidades ou pontuação.
+- Removidos os placeholders vazios de amostras, scripts e catálogo de modelos.
+- Planejamento pendente consolidado no status do README, sem um roadmap
+  duplicado.
+- Caminho público do workspace alterado para uma referência portátil.
 
 ## 1.0 compacto — 2026-07-29
 
@@ -34,7 +38,8 @@
 - Métodos internos de detecção e ciclo de vida do avaliador removidos do contrato.
 - `scoring.json` preenchido com 44 checks, 80 pontos e 15 críticos.
 - Seed determinístico criado.
-- Decisões pendentes separadas em `ROADMAP.md`.
+- Decisões pendentes foram separadas do contrato durante a elaboração; o
+  planejamento atual foi depois consolidado no status do README.
 - Exportação por sessão do OpenCode 1.18.9 verificada para custo, tokens, turnos e
   chamadas de ferramenta.
 - Relatório editorial obrigatório definido, com resumo dos checks e justificativas

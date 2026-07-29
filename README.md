@@ -174,13 +174,19 @@ eli-llm-bench/
 ├── README.md
 ├── CONTRACT.md
 ├── RUN_PROTOCOL.md
+├── AMBIGUITIES.md
+├── CHANGELOG.md
+├── LICENSE
 ├── scoring.json
 ├── prompts/
 │   └── build.md
 ├── assets/
 │   └── seed-data.json
 ├── config/
+│   └── benchmark.json
 ├── schemas/
+│   ├── result.schema.json
+│   └── scoring.schema.json
 └── results/
     └── <run-id>/
         ├── result.json

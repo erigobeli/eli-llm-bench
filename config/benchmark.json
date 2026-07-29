@@ -5,7 +5,7 @@
   "environment": {
     "operatingSystem": "Windows 11 x64",
     "npmScriptShell": "cmd.exe",
-    "workspaceRoot": "E:\\DATA\\04-PROJETOS\\eli-llm-bench\\workspaces"
+    "workspaceRoot": "../workspaces"
   },
   "limits": {
     "maxBuildTimeMinutes": 60,
