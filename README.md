@@ -52,11 +52,11 @@ mesma configuração e experimentos com outro harness aparecem separadamente:
 |---|---|---|---:|---:|---:|---|
 | [Primeira execução](./results/_historical/claude-opus-5__openrouter__2026-07-29-first/report.md) | OpenCode 1.18.9 | OpenRouter | 100/100 | aproximadamente 16m30s | US$ 4,04 | Histórica |
 | [Reexecução](./results/claude-opus-5__openrouter__2026-07-29/report.md) | OpenCode 1.18.9 | OpenRouter | 100/100 | 21m59s | US$ 6,59 | Oficial |
-| Claude Code via API | Claude Code | A definir | — | — | — | Experimento futuro |
+| [Claude Code via API](./results/_experiments/claude-opus-5__anthropic-api__claude-code__2026-07-29/report.md) | Claude Code 2.1.220 | API Anthropic | 100/100 | 16m13s | aproximadamente US$ 4,72 | Experimental |
 
 O experimento com Claude Code não entra no ranking principal porque muda o
-harness. Ele existe para mostrar quanto a ferramenta pode influenciar o mesmo
-modelo.
+harness e o provider. Ele mostra quanto a ferramenta e a rota de acesso podem
+influenciar o mesmo modelo.
 
 ## O desafio
 
