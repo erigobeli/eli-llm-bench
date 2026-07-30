@@ -55,6 +55,10 @@ workspace, provider fixado e fallback desligado.
 Intervenção do operador invalida a execução, exceto o corte automático por limite
 ou o cancelamento de uma falha comprovadamente externa ao participante.
 
+Se o provider rejeitar uma chamada antes de gerar resposta, uma retomada técnica
+neutra na mesma sessão é permitida. Ela não pode incluir diagnóstico, orientação,
+código ou mudança de requisitos e não é tratada como prompt de correção.
+
 ## 5. Encerramento
 
 `terminationReason` registra:
@@ -66,8 +70,15 @@ ou o cancelamento de uma falha comprovadamente externa ao participante.
 - `infra_invalid`: falha externa comprovada;
 - `user_cancelled`: cancelamento manual.
 
-Tempo total é a diferença de relógio entre o envio do prompt e o encerramento da
-sessão. Tempo e custo são metadados: não alteram a nota.
+O tempo publicado é o **tempo ativo** entre o envio do prompt e o encerramento
+da sessão. Pausas comprovadamente externas ao trabalho do participante podem ser
+excluídas quando o export bruto permite delimitar seu início e fim e nenhuma
+orientação, correção de código ou mudança de configuração é feita durante a
+pausa. A mesma regra vale para todos os modelos.
+
+O export bruto e o cálculo permanecem guardados pelo operador para auditoria,
+mas o ranking mostra somente o tempo ativo. Tempo e custo são metadados: não
+alteram a nota.
 
 Custo, turnos, ferramentas e tokens são extraídos do `opencode export`. O custo
 publicado é o valor efetivamente cobrado do participante no OpenRouter.

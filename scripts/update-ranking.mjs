@@ -102,7 +102,7 @@ function buildLeaderboard(results) {
   const lines = [
     startMarker,
     "",
-    "| # | Modelo | Provider | Raciocínio | Nota | Tempo | Custo | Vídeo |",
+    "| # | Modelo | Provider | Raciocínio | Nota | Tempo ativo | Custo | Vídeo |",
     "|---:|---|---|---|---:|---:|---:|---|"
   ];
 

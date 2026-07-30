@@ -1,48 +1,41 @@
 # CRMBench Modelo
 
-Mini CRM full-stack em português do Brasil para gestão de **clientes**, **negócios** e
-acompanhamento do **pipeline** comercial. Todo o dado é persistido em um banco SQLite
-local, sem serviços externos e sem autenticação.
+Mini CRM full-stack em português do Brasil para gestão de **clientes** e **negócios**,
+com visualização do pipeline comercial em quatro etapas. Todos os dados ficam em um
+banco **SQLite** local — a aplicação não depende de nenhum serviço externo.
 
 ## Funcionalidades
 
-- **Painel** (`/`): indicadores de clientes cadastrados, negócios abertos e valor do
-  pipeline aberto, além de negócios recentes e distribuição por etapa.
-- **Clientes** (`/clientes`): CRUD completo, busca por nome/e-mail/empresa, paginação de
-  4 registros por página e ação **Ver negócios** com os negócios do cliente escolhido.
-- **Negócios** (`/negocios`): CRUD completo, busca por título, filtros de etapa e cliente
-  combináveis, paginação de 4 registros por página e troca rápida de etapa.
-- **Pipeline** (`/pipeline`): quatro colunas (Novo, Em contato, Proposta, Fechado) com
-  cartões arrastáveis entre colunas (drag-and-drop) e seletor de etapa como alternativa
-  acessível. A mudança de etapa é persistida imediatamente no SQLite.
-- Interface responsiva (desktop e viewport móvel de 390×844), formatação monetária
-  brasileira, estados de carregamento, erro e lista vazia, confirmação antes de excluir e
-  mensagens de sucesso/erro.
+- **Início (`/`)** — indicadores de clientes, negócios abertos e valor do pipeline,
+  distribuição por etapa e negócios recentes.
+- **Clientes (`/clientes`)** — listagem com busca e paginação (4 registros por página),
+  criação, edição, exclusão com confirmação e atalho **Ver negócios** para filtrar os
+  negócios do cliente escolhido.
+- **Negócios (`/negocios`)** — listagem com busca por título, filtros de etapa e de
+  cliente, paginação (4 registros por página), CRUD completo e alteração rápida de etapa.
+- **Pipeline (`/pipeline`)** — colunas *Novo*, *Em contato*, *Proposta* e *Fechado*, com
+  **arrastar e soltar** entre colunas (ou seletor de etapa no cartão); a alteração é
+  persistida imediatamente no SQLite.
 
 ## Stack
 
 | Camada | Tecnologia |
 |---|---|
-| Runtime | Node.js 24 + npm |
-| Linguagem | TypeScript |
-| Frontend | React 18 + Vite |
-| Backend | Express 4 |
+| Frontend | React 18 + Vite 5 + TypeScript + CSS próprio |
+| Backend | Express 4 + TypeScript |
 | Banco | SQLite via `better-sqlite3` 12.10.0 |
-| Testes | Vitest + Supertest |
-
-Sem ORM, sem bibliotecas de UI e sem dependências de IA: o CSS é próprio da aplicação.
+| Testes | Vitest |
 
 ## Requisitos
 
-- Windows 11 x64 (ambiente oficial; os scripts npm rodam em `cmd.exe`);
-- Node.js 24 ou superior e npm;
-- nenhuma variável de ambiente é obrigatória.
+- **Node.js 24** ou superior e **npm** (o `npm install` compila/baixa o binário nativo do
+  `better-sqlite3`).
+- Windows 11 x64 é o ambiente oficial; os scripts npm rodam no `cmd.exe` e não dependem
+  de ferramentas POSIX.
 
 ## Comandos
 
-Execute os comandos na raiz do projeto, nesta ordem:
-
-```bat
+```cmd
 npm install
 npm run db:setup
 npm test
@@ -53,51 +46,46 @@ npm start
 | Comando | Descrição |
 |---|---|
 | `npm install` | Instala as dependências a partir do `package-lock.json`. |
-| `npm run db:setup` | Recria o banco indicado por `DB_PATH`, aplica o schema e carrega `seed-data.json`. Pode ser executado quantas vezes for necessário, sem duplicar dados. |
-| `npm test` | Executa a suíte Vitest (health, criação de cliente, criação de negócio relacionado e persistência da mudança de etapa). |
-| `npm run build` | Compila o frontend (Vite → `dist/client`) e o servidor (TypeScript → `dist/server`). |
-| `npm start` | Sobe um único serviço que responde à API e serve o frontend de produção na mesma origem (padrão: <http://localhost:3000>). |
+| `npm run db:setup` | Compila o servidor, **recria** o banco SQLite, cria o schema e carrega `seed-data.json`. Pode ser executado quantas vezes for necessário, sem duplicar dados. |
+| `npm test` | Executa a suíte Vitest (health, criação de cliente, criação de negócio relacionado, persistência da etapa após reinício, busca e paginação). |
+| `npm run build` | Gera o servidor de produção (`dist/server`) e o frontend (`dist/web`). |
+| `npm start` | Sobe um único serviço que atende a API e o frontend de produção na mesma origem (padrão: <http://localhost:3000>). |
 
-Scripts auxiliares de desenvolvimento: `npm run dev:server` (API com recarga) e
-`npm run dev:client` (Vite com proxy para `/api`).
+Fluxo recomendado na primeira execução:
+`npm install` → `npm run db:setup` → `npm run build` → `npm start`.
 
-## Configuração
+Durante o desenvolvimento é possível usar `npm run dev:server` (API + build do servidor)
+em conjunto com `npm run dev:web` (Vite em <http://localhost:5173>, com proxy de `/api`).
+
+## Variáveis de ambiente
+
+A aplicação inicia sem nenhuma variável definida.
 
 | Variável | Padrão | Descrição |
 |---|---|---|
 | `PORT` | `3000` | Porta HTTP do serviço. |
 | `DB_PATH` | `./.data/eli-llm-bench.sqlite` | Caminho do arquivo SQLite. |
 
-Exemplo no `cmd.exe`:
-
-```bat
-set PORT=4000
-set DB_PATH=.data\meu-crm.sqlite
-npm run db:setup
-npm start
-```
-
 ## API
 
-Todas as rotas usam JSON. Erros retornam `{ "error": "Mensagem em português." }` com
-status `400` (dados inválidos), `404` (registro inexistente) ou `409` (conflito de
-integridade).
+Todas as rotas usam JSON. Erros retornam apenas `{ "error": "Mensagem em português." }`,
+com `400` para dados inválidos, `404` para registro inexistente e `409` para conflito de
+integridade (e-mail duplicado ou exclusão de cliente com negócios).
 
 | Método | Rota | Descrição |
 |---|---|---|
 | `GET` | `/api/health` | `200 { "status": "ok" }`. |
 | `GET` | `/api/dashboard` | `totalClients`, `openDeals`, `pipelineValueInCents`. |
-| `GET` | `/api/clients` | Lista paginada. Parâmetros: `search`, `page` (≥ 1), `pageSize` (1–50). |
+| `GET` | `/api/clients` | Lista paginada. Parâmetros: `search`, `page` (≥1), `pageSize` (1–50). |
 | `POST` | `/api/clients` | Cria cliente (`201`). |
 | `PATCH` | `/api/clients/:id` | Atualização parcial (`200`). |
-| `DELETE` | `/api/clients/:id` | Exclui (`204`); `409` se houver negócios relacionados. |
-| `GET` | `/api/clients/:id/deals` | Negócios do cliente. |
+| `DELETE` | `/api/clients/:id` | Exclui (`204`); `409` se houver negócios. |
 | `GET` | `/api/deals` | Lista paginada. Parâmetros: `search`, `stage`, `clientId`, `page`, `pageSize`. |
 | `POST` | `/api/deals` | Cria negócio (`201`). |
 | `PATCH` | `/api/deals/:id` | Atualização parcial, inclusive de etapa (`200`). |
-| `DELETE` | `/api/deals/:id` | Exclui o negócio (`204`). |
+| `DELETE` | `/api/deals/:id` | Exclui (`204`). |
 
-As listagens usam o envelope:
+Envelope das listagens:
 
 ```json
 {
@@ -108,26 +96,27 @@ As listagens usam o envelope:
 
 ### Modelo de dados
 
-- **Cliente**: `id`, `name` (2–80 caracteres), `email` (válido e único sem diferenciar
-  maiúsculas), `company` (opcional, `null` quando ausente), `createdAt`, `updatedAt`.
-- **Negócio**: `id`, `title` (2–120 caracteres), `valueInCents` (inteiro ≥ 0),
-  `clientId` (cliente existente), `stage` (`new`, `contact`, `proposal`, `won`),
-  `createdAt`, `updatedAt`.
+```ts
+Cliente { id, name, email, company: string | null, createdAt, updatedAt }
+Negócio { id, title, valueInCents, clientId, stage: "new" | "contact" | "proposal" | "won", createdAt, updatedAt }
+```
 
-Datas são ISO 8601 em UTC.
+Regras principais: `name` de 2 a 80 caracteres; `email` válido e único ignorando
+maiúsculas/minúsculas; `title` de 2 a 120 caracteres; `valueInCents` inteiro ≥ 0;
+`clientId` precisa existir; datas em ISO 8601 UTC.
 
 ## Seed
 
-`seed-data.json` é imutável e carregado como está pelo `npm run db:setup`: 5 clientes e
-8 negócios, resultando em 6 negócios abertos e `1010000` centavos de pipeline aberto.
+`seed-data.json` é imutável e carregado exatamente como está por `npm run db:setup`
+(5 clientes e 8 negócios → 6 negócios abertos e `1010000` centavos de pipeline aberto).
 
 ## Estrutura
 
 ```
-scripts/db-setup.ts      recria o banco e carrega o seed
-src/server/              db, validações, rotas Express e entrada de produção
-src/client/              React (páginas, componentes de UI, CSS próprio)
-tests/api.test.ts        suíte Vitest
-dist/                    saída de build (client + server)
-.data/                   banco SQLite local
+src/server   API Express, acesso ao SQLite, validações, script de setup do banco
+src/web      Aplicação React (páginas, componentes, estilos)
+tests        Suíte Vitest de integração da API
+dist/server  Servidor compilado (npm run build)
+dist/web     Frontend de produção (npm run build)
+.data        Arquivo SQLite gerado localmente
 ```

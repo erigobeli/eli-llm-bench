@@ -59,7 +59,10 @@
       "properties": {
         "startedAt": { "type": "string", "format": "date-time" },
         "endedAt": { "type": "string", "format": "date-time" },
-        "buildTotalMs": { "$ref": "#/$defs/nonNegativeInteger" },
+        "buildTotalMs": {
+          "$ref": "#/$defs/nonNegativeInteger",
+          "description": "Tempo ativo oficial da criação, excluindo apenas pausas externas comprovadas pelo protocolo."
+        },
         "evaluationTotalMs": { "$ref": "#/$defs/nonNegativeInteger" }
       },
       "additionalProperties": false

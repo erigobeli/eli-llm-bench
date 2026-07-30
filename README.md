@@ -28,19 +28,35 @@ específica.
 
 <!-- leaderboard:start -->
 
-| # | Modelo | Provider | Raciocínio | Nota | Tempo | Custo | Vídeo |
+| # | Modelo | Provider | Raciocínio | Nota | Tempo ativo | Custo | Vídeo |
 |---:|---|---|---|---:|---:|---:|---|
-| 1 | [anthropic/claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 44m 52s | US$ 4.04 | — |
-| 2 | [anthropic/claude-fable-5](./results/claude-fable-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 9m 46s | US$ 4.53 | — |
+| 1 | [anthropic/claude-fable-5](./results/claude-fable-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 9m 46s | US$ 4.53 | — |
+| 2 | [anthropic/claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 21m 59s | US$ 6.59 | — |
 | 3 | [anthropic/claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 15s | US$ 1.46 | — |
 | 4 | [anthropic/claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 20s | US$ 2.54 | — |
 | 5 | [anthropic/claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | openrouter | high | 87/100 | 13m 6s | US$ 1.20 | — |
 
 <!-- leaderboard:end -->
 
-`Custo` é somente o valor cobrado pela criação do projeto. `Tempo` vai do envio
-do prompt ao encerramento da sessão. `Vídeo` aponta para a demonstração publicada
+`Custo` é somente o valor cobrado pela criação do projeto. `Tempo ativo` mede o
+período em que o participante pôde trabalhar e exclui apenas pausas externas
+comprovadas conforme o protocolo. `Vídeo` aponta para a demonstração publicada
 no YouTube. Clique no nome do modelo para abrir o relatório completo da execução.
+
+### Comparação adicional: Claude Opus 5
+
+O ranking mantém uma única execução oficial por configuração. Repetições da
+mesma configuração e experimentos com outro harness aparecem separadamente:
+
+| Execução | Harness | Provider | Nota | Tempo ativo | Custo | Classificação |
+|---|---|---|---:|---:|---:|---|
+| [Primeira execução](./results/_historical/claude-opus-5__openrouter__2026-07-29-first/report.md) | OpenCode 1.18.9 | OpenRouter | 100/100 | aproximadamente 16m30s | US$ 4,04 | Histórica |
+| [Reexecução](./results/claude-opus-5__openrouter__2026-07-29/report.md) | OpenCode 1.18.9 | OpenRouter | 100/100 | 21m59s | US$ 6,59 | Oficial |
+| Claude Code via API | Claude Code | A definir | — | — | — | Experimento futuro |
+
+O experimento com Claude Code não entra no ranking principal porque muda o
+harness. Ele existe para mostrar quanto a ferramenta pode influenciar o mesmo
+modelo.
 
 ## O desafio
 

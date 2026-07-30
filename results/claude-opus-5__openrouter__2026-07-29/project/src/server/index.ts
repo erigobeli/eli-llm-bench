@@ -1,49 +1,43 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import express from 'express';
-import { createApp } from './app';
-import { openDatabase, resolveDbPath } from './db';
+import path from "node:path";
+import { createApp } from "./app";
+import { migrate, openDatabase, resolveDbPath } from "./db";
 
-const PORT = Number.parseInt(process.env.PORT ?? '', 10) || 3000;
-const dbPath = resolveDbPath(process.env.DB_PATH);
-
-const db = openDatabase(dbPath);
-const app = createApp(db);
-
-// Frontend de produção servido na mesma origem da API.
-const clientDir = path.resolve(__dirname, '..', 'client');
-const indexHtml = path.join(clientDir, 'index.html');
-
-if (fs.existsSync(indexHtml)) {
-  app.use(express.static(clientDir, { index: false }));
-  app.get('*', (_req, res) => {
-    res.sendFile(indexHtml);
-  });
-} else {
-  app.get('*', (_req, res) => {
-    res
-      .status(503)
-      .type('text/plain; charset=utf-8')
-      .send('Frontend não compilado. Execute "npm run build" antes de "npm start".');
-  });
+function resolveWebRoot(): string {
+  // dist/server/index.js -> dist/web
+  return path.resolve(__dirname, "..", "web");
 }
 
-const server = app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`CRMBench Modelo em execução: http://localhost:${PORT} (banco: ${dbPath})`);
-});
+function main(): void {
+  const port = Number(process.env.PORT ?? 3000);
+  if (!Number.isInteger(port) || port < 0 || port > 65535) {
+    console.error(`PORT inválida: ${String(process.env.PORT)}`);
+    process.exit(1);
+  }
 
-function shutdown(): void {
-  server.close(() => {
-    try {
-      db.close();
-    } catch {
-      // ignora
-    }
-    process.exit(0);
+  const dbPath = resolveDbPath(process.env.DB_PATH);
+  const db = openDatabase(dbPath);
+  migrate(db);
+
+  const app = createApp(db, { webRoot: resolveWebRoot() });
+
+  const server = app.listen(port, () => {
+    console.log(`CRMBench Modelo em execução em http://localhost:${port}`);
+    console.log(`Banco de dados: ${dbPath}`);
   });
-  setTimeout(() => process.exit(0), 3000).unref();
+
+  const shutdown = () => {
+    server.close(() => {
+      try {
+        db.close();
+      } catch {
+        /* ignora */
+      }
+      process.exit(0);
+    });
+  };
+
+  process.on("SIGINT", shutdown);
+  process.on("SIGTERM", shutdown);
 }
 
-process.on('SIGINT', shutdown);
-process.on('SIGTERM', shutdown);
+main();

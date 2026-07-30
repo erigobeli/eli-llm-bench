@@ -11,10 +11,23 @@
 | Provider | OpenRouter |
 | Harness | OpenCode 1.18.9 |
 | Raciocínio | `high` |
-| Custo da criação | US$ 6,59 |
-| Tempo ativo oficial | 21m59s |
-| Turnos | 77 |
-| Chamadas de ferramentas | 94 |
+| Custo da criação | US$ 4,04 |
+| Tempo bruto oficial | 44m52s |
+| Tempo ativo aproximado | 16m30s |
+| Turnos | 49 |
+| Chamadas de ferramentas | 49 |
+
+### Incidente operacional
+
+Durante a validação final feita pelo próprio agente, o servidor iniciou e
+respondeu corretamente, mas permaneceu aberto porque o comando de encerramento
+procurou um caminho com barras diferentes das usadas pelo processo no Windows.
+Uma chamada de ferramenta ficou bloqueada por 28m22s.
+
+O operador identificou e encerrou somente o processo órfão da porta 3000. Não
+houve nova mensagem ao modelo, alteração de código nem correção manual. O tempo
+bruto de 44m52s foi mantido no ranking; 16m30s é apenas uma estimativa secundária
+obtida ao descontar a chamada bloqueada.
 
 ## Screenshots
 
@@ -65,9 +78,9 @@
 
 | Verificação | Resultado | Pontos | Evidência |
 |---|---:|---:|---|
-| setup.install | PASS | 2/2 | npm install concluiu em 4530 ms com a stack obrigatória. |
+| setup.install | PASS | 2/2 | npm install concluiu em 6301 ms com a stack obrigatória. |
 | setup.database | PASS | 3/3 | db:setup recriou duas vezes o banco isolado indicado por DB_PATH. |
-| setup.build | PASS | 4/4 | O build de produção concluiu em 3226 ms. |
+| setup.build | PASS | 4/4 | O build de produção concluiu em 3460 ms. |
 | setup.start | PASS | 5/5 | npm start serviu a API e a interface na mesma origem. |
 | clients.create | PASS | 5/5 | Cliente 6 foi criado com campos normalizados e timestamps válidos. |
 | clients.read | PASS | 4/4 | Listagem, busca case-insensitive e páginas de clientes refletiram o banco. |
@@ -86,6 +99,6 @@
 | ui.deal_flow | PASS | 5/5 | Paginação, busca, filtros combinados e CRUD de negócios funcionaram pela interface. |
 | ui.feedback | PASS | 4/4 | Erro, sucesso, confirmação e estado vazio ficaram visíveis, sem overflow nas duas viewports. |
 | ui.app_name | PASS | 1/1 | O título do navegador e a marca visível usam CRMBench Modelo. |
-| quality.tests_docs | PASS | 5/5 | 6 testes passaram e o README documentou os cinco comandos obrigatórios. |
+| quality.tests_docs | PASS | 5/5 | 5 testes passaram e o README documentou os cinco comandos obrigatórios. |
 
 _Relatório produzido automaticamente pelo avaliador externo._

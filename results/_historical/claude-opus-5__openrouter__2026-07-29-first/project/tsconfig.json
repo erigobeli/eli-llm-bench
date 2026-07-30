@@ -6,12 +6,14 @@
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
     "strict": true,
-    "noEmit": true,
-    "skipLibCheck": true,
+    "noUnusedLocals": false,
     "esModuleInterop": true,
-    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node", "vite/client"]
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "types": ["node", "vitest/globals"]
   },
-  "include": ["src", "tests", "vite.config.ts"]
+  "include": ["src", "scripts", "tests", "vite.config.ts", "vitest.config.ts"]
 }

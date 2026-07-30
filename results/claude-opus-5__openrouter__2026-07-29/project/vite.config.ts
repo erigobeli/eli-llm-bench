@@ -1,18 +1,23 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'node:path';
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  root: path.resolve(__dirname, 'src/client'),
   build: {
-    outDir: path.resolve(__dirname, 'dist/client'),
+    outDir: "dist/web",
     emptyOutDir: true,
   },
   server: {
     port: 5173,
     proxy: {
-      '/api': 'http://localhost:3000',
+      "/api": "http://localhost:3000",
     },
+  },
+  test: {
+    environment: "node",
+    include: ["tests/**/*.test.ts"],
+    hookTimeout: 30000,
+    testTimeout: 30000,
+    pool: "forks",
   },
 });
