@@ -30,11 +30,12 @@ específica.
 
 | # | Modelo | Provider | Raciocínio | Nota | Tempo ativo | Custo | Vídeo |
 |---:|---|---|---|---:|---:|---:|---|
-| 1 | [anthropic/claude-fable-5](./results/claude-fable-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 9m 46s | US$ 4.53 | — |
-| 2 | [anthropic/claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 21m 59s | US$ 6.59 | — |
-| 3 | [anthropic/claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 15s | US$ 1.46 | — |
-| 4 | [anthropic/claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 20s | US$ 2.54 | — |
-| 5 | [anthropic/claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | openrouter | high | 87/100 | 13m 6s | US$ 1.20 | — |
+| 1 | [openai/gpt-6-astra](./results/gpt-6-astra__openrouter__2026-09-06/report.md) | openrouter | high | 100/100 | 15m 46s | US$ 4.34 | — |
+| 2 | [anthropic/claude-fable-5](./results/claude-fable-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 9m 46s | US$ 4.53 | — |
+| 3 | [anthropic/claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 21m 59s | US$ 6.59 | — |
+| 4 | [anthropic/claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 15s | US$ 1.46 | — |
+| 5 | [anthropic/claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 20s | US$ 2.54 | — |
+| 6 | [anthropic/claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | openrouter | high | 87/100 | 13m 6s | US$ 1.20 | — |
 
 <!-- leaderboard:end -->
 
@@ -143,6 +144,10 @@ Tempo e custo são metadados e não mudam a nota. Consulte
 [RUN_PROTOCOL.md](./RUN_PROTOCOL.md) para as regras completas.
 
 ## Receita para executar um modelo
+
+Para uma receita operacional curta, com comandos copiáveis e um texto pronto
+para solicitar ao Codex a avaliação e a publicação, consulte o
+[`OPERATOR_GUIDE.md`](./OPERATOR_GUIDE.md).
 
 Os comandos abaixo pressupõem a estrutura local do operador, com `public/`,
 `internal/` e `workspaces/` dentro de `eli-llm-bench/`. Substitua `<run-id>` por
@@ -265,6 +270,69 @@ Na primeira execução oficial, a montagem do `result.json` será conferida
 manualmente contra a exportação do OpenCode. Depois de conhecermos o formato
 real dessa exportação, essa conversão poderá ser automatizada sem alterar a
 metodologia nem a pontuação.
+
+### 5. Pedido pronto para avaliar e publicar
+
+Se você voltar ao projeto depois de alguns dias, não precisa lembrar cada etapa
+da publicação. Após o agente terminar, copie o texto abaixo e envie ao Codex
+aberto na raiz local de `eli-llm-bench`. Substitua somente os valores entre
+`<...>`:
+
+```text
+A execução do Eli LLM Bench terminou.
+
+Run ID: <run-id>
+Modelo exato: <id-do-modelo>
+Harness e versão: <exemplo: OpenCode 1.18.9>
+Provider: <exemplo: OpenRouter>
+Reasoning: <exemplo: high>
+Diretório do projeto:
+<caminho-completo>\workspaces\<run-id>\project
+
+Faça todo o processamento pós-execução:
+
+1. Não altere nem corrija nenhum arquivo do projeto participante.
+2. Execute o pré-voo e encerre somente processos residuais pertencentes aos
+   workspaces do benchmark.
+3. Localize e exporte a sessão exata usada nessa execução. Extraia e confira
+   horário inicial e final, tempo ativo, custo, tokens, turnos e chamadas de
+   ferramentas. Não estime nem ajuste métricas sem evidência. Se houver pausa
+   externa comprovada, aplique exatamente a regra do RUN_PROTOCOL.md e preserve
+   os valores bruto e ativo no resultado.
+4. Execute o avaliador determinístico com:
+   cd .\internal\evaluator
+   npm run evaluate -- --project ..\..\workspaces\<run-id>\project --run-id <run-id>
+5. Confira evaluation.json, report.md e as evidências de cada check. A IA não
+   escolhe a nota: ela é calculada pelo avaliador e pelo scoring.json.
+6. Se parecer existir falso negativo ou falha do próprio avaliador, não conserte
+   o projeto participante nem publique uma nota provisória. Investigue o
+   avaliador, preserve o resultado preliminar e valide qualquer correção
+   executando a aplicação de referência, que precisa continuar em 100/100.
+7. Monte public/results/<run-id>/ com result.json, report.md, screenshots
+   úteis e uma cópia fiel do código produzido. Não copie node_modules, banco
+   temporário, build, cache, sessão bruta ou arquivos desnecessários.
+8. Verifique e remova da cópia pública qualquer segredo, chave, cookie, .env,
+   log sensível ou caminho pessoal. Não esconda falhas reais nem altere o código
+   avaliado para melhorar o resultado.
+9. Valide o result.json contra o schema público, entre em .\public, atualize o
+   ranking com node .\scripts\update-ranking.mjs e confira o diff completo.
+10. Commite somente os artefatos públicos seguros dessa execução e faça push
+    para o branch main do repositório configurado.
+11. Ao terminar, informe: nota, checks aprovados/reprovados, tempo ativo, custo,
+    tokens, commit, URL do relatório, URL do código e URL da aplicação local
+    para demonstração. Deixe a aplicação rodando apenas se isso for seguro e me
+    diga também como encerrá-la.
+
+Vá até o fim sem pedir confirmação intermediária. Pare antes do commit ou da
+publicação somente se faltar a sessão correta, houver dúvida sobre segredo,
+falha de infraestrutura ou alguma inconsistência que possa tornar o resultado
+injusto. Nesse caso, explique objetivamente o bloqueio.
+```
+
+Se a execução não foi feita com OpenCode/OpenRouter, adapte apenas os campos de
+harness, provider e fonte das métricas. Uma execução feita com Claude Code, por
+exemplo, deve ser identificada como configuração diferente e não deve entrar
+automaticamente no ranking principal.
 
 ## O que o resultado não prova
 
