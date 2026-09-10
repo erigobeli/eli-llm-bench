@@ -30,15 +30,16 @@ específica.
 
 | # | Modelo | Provider | Raciocínio | Nota | Tempo ativo | Custo | Vídeo |
 |---:|---|---|---|---:|---:|---:|---|
-| 1 | [google/gemini-3.8-flash](./results/gemini-3-8-flash__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 11m 15s | US$ 0.66 | — |
-| 2 | [openai/gpt-6-astra](./results/gpt-6-astra__openrouter__2026-09-06/report.md) | openrouter | high | 100/100 | 15m 46s | US$ 4.34 | — |
-| 3 | [anthropic/claude-fable-5.1](./results/claude-fable-5-1__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 12m 43s | US$ 4.38 | — |
-| 4 | [anthropic/claude-fable-5](./results/claude-fable-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 9m 46s | US$ 4.53 | — |
-| 5 | [anthropic/claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 21m 59s | US$ 6.59 | — |
-| 6 | [anthropic/claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 15s | US$ 1.46 | — |
-| 7 | [anthropic/claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 20s | US$ 2.54 | — |
-| 8 | [openai/gpt-5.6-luna](./results/gpt-5-6-luna__openrouter__2026-09-10/report.md) | openrouter | high | 95/100 | 5m 40s | US$ 0.06 | — |
-| 9 | [anthropic/claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | openrouter | high | 87/100 | 13m 6s | US$ 1.20 | — |
+| 1 | [openai/gpt-5.6-terra](./results/gpt-5-terra__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 3m 58s | US$ 0.51 | — |
+| 2 | [google/gemini-3.8-flash](./results/gemini-3-8-flash__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 11m 15s | US$ 0.66 | — |
+| 3 | [openai/gpt-6-astra](./results/gpt-6-astra__openrouter__2026-09-06/report.md) | openrouter | high | 100/100 | 15m 46s | US$ 4.34 | — |
+| 4 | [anthropic/claude-fable-5.1](./results/claude-fable-5-1__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 12m 43s | US$ 4.38 | — |
+| 5 | [anthropic/claude-fable-5](./results/claude-fable-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 9m 46s | US$ 4.53 | — |
+| 6 | [anthropic/claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 21m 59s | US$ 6.59 | — |
+| 7 | [anthropic/claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 15s | US$ 1.46 | — |
+| 8 | [anthropic/claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 20s | US$ 2.54 | — |
+| 9 | [openai/gpt-5.6-luna](./results/gpt-5-6-luna__openrouter__2026-09-10/report.md) | openrouter | high | 95/100 | 5m 40s | US$ 0.06 | — |
+| 10 | [anthropic/claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | openrouter | high | 87/100 | 13m 6s | US$ 1.20 | — |
 
 <!-- leaderboard:end -->
 
