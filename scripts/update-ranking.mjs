@@ -184,12 +184,12 @@ function buildLeaderboard(results) {
   const lines = [
     startMarker,
     "",
-    "| # | Modelo | Provider | Raciocínio | Nota | Tempo ativo | Custo | Tokens processados | Entrega |",
-    "|---:|---|---|---|---:|---:|---:|---:|---:|"
+    "| # | Modelo | Provider | Raciocínio | Nota | Tempo ativo | Custo | Tokens processados | Arquivos | Linhas (LOC) |",
+    "|---:|---|---|---|---:|---:|---:|---:|---:|---:|"
   ];
 
   if (results.length === 0) {
-    lines.push("| — | Nenhuma execução oficial publicada | — | — | — | — | — | — | — |");
+    lines.push("| — | Nenhuma execução oficial publicada | — | — | — | — | — | — | — | — |");
   } else {
     results.forEach((result, index) => {
       const model = `[${escapeCell(result.model.id)}](./results/${encodeURI(result.runId)}/report.md)`;
@@ -204,7 +204,8 @@ function buildLeaderboard(results) {
           formatDuration(result.timing.buildTotalMs),
           formatCost(result.cost.participant, result.cost.currency),
           formatInteger(totalTokens(result)),
-          `${delivery.files} arq. · ${formatInteger(delivery.nonEmptyCodeLines)} LOC |`
+          formatInteger(delivery.files),
+          `${formatInteger(delivery.nonEmptyCodeLines)} |`
         ].join(" | ")
       );
     });

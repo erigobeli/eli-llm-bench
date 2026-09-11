@@ -28,20 +28,20 @@ específica.
 
 <!-- leaderboard:start -->
 
-| # | Modelo | Provider | Raciocínio | Nota | Tempo ativo | Custo | Tokens processados | Entrega |
-|---:|---|---|---|---:|---:|---:|---:|---:|
-| 1 | [openai/gpt-5.6-sol](./results/gpt-5-6-sol__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 6m 20s | US$ 0.46 | 578.491 | 20 arq. · 767 LOC |
-| 2 | [openai/gpt-5.6-terra](./results/gpt-5-terra__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 3m 58s | US$ 0.51 | 688.525 | 16 arq. · 393 LOC |
-| 3 | [google/gemini-3.8-flash](./results/gemini-3-8-flash__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 11m 15s | US$ 0.66 | 3.155.016 | 27 arq. · 3.186 LOC |
-| 4 | [openai/gpt-6-astra](./results/gpt-6-astra__openrouter__2026-09-06/report.md) | openrouter | high | 100/100 | 15m 46s | US$ 4.34 | 1.221.044 | 30 arq. · 4.649 LOC |
-| 5 | [anthropic/claude-fable-5.1](./results/claude-fable-5-1__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 12m 43s | US$ 4.38 | 2.412.418 | 32 arq. · 2.956 LOC |
-| 6 | [anthropic/claude-fable-5](./results/claude-fable-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 9m 46s | US$ 4.53 | 1.456.914 | 24 arq. · 2.637 LOC |
-| 7 | [anthropic/claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 21m 59s | US$ 6.59 | 6.545.373 | 29 arq. · 3.869 LOC |
-| 8 | [deepseek/deepseek-v4.1-flash](./results/deepseek-4-1-flash__openrouter__2026-09-10/report.md) | openrouter | high | 96/100 | 3m 59s | US$ 0.04 | 1.038.979 | 33 arq. · 3.031 LOC |
-| 9 | [anthropic/claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 15s | US$ 1.46 | 3.449.491 | 37 arq. · 2.747 LOC |
-| 10 | [anthropic/claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 20s | US$ 2.54 | 1.909.705 | 28 arq. · 2.572 LOC |
-| 11 | [openai/gpt-5.6-luna](./results/gpt-5-6-luna__openrouter__2026-09-10/report.md) | openrouter | high | 95/100 | 5m 40s | US$ 0.06 | 921.976 | 17 arq. · 421 LOC |
-| 12 | [anthropic/claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | openrouter | high | 87/100 | 13m 6s | US$ 1.20 | 8.459.057 | 29 arq. · 2.164 LOC |
+| # | Modelo | Provider | Raciocínio | Nota | Tempo ativo | Custo | Tokens processados | Arquivos | Linhas (LOC) |
+|---:|---|---|---|---:|---:|---:|---:|---:|---:|
+| 1 | [openai/gpt-5.6-sol](./results/gpt-5-6-sol__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 6m 20s | US$ 0.46 | 578.491 | 20 | 767 |
+| 2 | [openai/gpt-5.6-terra](./results/gpt-5-terra__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 3m 58s | US$ 0.51 | 688.525 | 16 | 393 |
+| 3 | [google/gemini-3.8-flash](./results/gemini-3-8-flash__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 11m 15s | US$ 0.66 | 3.155.016 | 27 | 3.186 |
+| 4 | [openai/gpt-6-astra](./results/gpt-6-astra__openrouter__2026-09-06/report.md) | openrouter | high | 100/100 | 15m 46s | US$ 4.34 | 1.221.044 | 30 | 4.649 |
+| 5 | [anthropic/claude-fable-5.1](./results/claude-fable-5-1__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 12m 43s | US$ 4.38 | 2.412.418 | 32 | 2.956 |
+| 6 | [anthropic/claude-fable-5](./results/claude-fable-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 9m 46s | US$ 4.53 | 1.456.914 | 24 | 2.637 |
+| 7 | [anthropic/claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 21m 59s | US$ 6.59 | 6.545.373 | 29 | 3.869 |
+| 8 | [deepseek/deepseek-v4.1-flash](./results/deepseek-4-1-flash__openrouter__2026-09-10/report.md) | openrouter | high | 96/100 | 3m 59s | US$ 0.04 | 1.038.979 | 33 | 3.031 |
+| 9 | [anthropic/claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 15s | US$ 1.46 | 3.449.491 | 37 | 2.747 |
+| 10 | [anthropic/claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 20s | US$ 2.54 | 1.909.705 | 28 | 2.572 |
+| 11 | [openai/gpt-5.6-luna](./results/gpt-5-6-luna__openrouter__2026-09-10/report.md) | openrouter | high | 95/100 | 5m 40s | US$ 0.06 | 921.976 | 17 | 421 |
+| 12 | [anthropic/claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | openrouter | high | 87/100 | 13m 6s | US$ 1.20 | 8.459.057 | 29 | 2.164 |
 
 <!-- leaderboard:end -->
 
@@ -57,19 +57,18 @@ registradas no `result.json`. O total ajuda a observar a trajetória da execuç�
 mas não equivale diretamente a tokens cobrados em tarifa cheia: provedores e
 modelos podem contabilizar e precificar cache e raciocínio de formas diferentes.
 
-`Entrega` mostra a quantidade de arquivos presentes no projeto público
-sanitizado e as linhas de código não vazias (`LOC`). A contagem de arquivos
-ignora dependências, builds, bancos, caches, cobertura e artefatos de testes,
-incluindo diretórios como `node_modules`, `dist`, `build`, `.data`, `coverage` e
-`test-results`. Arquivos de manifesto e lock continuam contando como arquivos
-entregues, mas suas linhas não entram em `LOC`.
+`Arquivos` mostra a quantidade de arquivos presentes no projeto público
+sanitizado. A contagem ignora dependências, builds, bancos, caches, cobertura e
+artefatos de testes, incluindo diretórios como `node_modules`, `dist`, `build`,
+`.data`, `coverage` e `test-results`. Arquivos de manifesto e lock continuam
+contando como arquivos entregues.
 
-Para `LOC`, são consideradas somente linhas não vazias dos arquivos com as
-extensões `.ts`, `.tsx`, `.js`, `.jsx`, `.mjs`, `.cjs`, `.css`, `.scss`, `.html`
-e `.sql`. Documentação, JSON, lockfiles, seeds e outros arquivos de dados não
-entram nessa soma.
+`Linhas` considera somente linhas de código não vazias dos arquivos com as
+extensões `.ts`, `.tsx`, `.js`, `.jsx`, `.mjs`, `.cjs`, `.css`, `.scss`,
+`.html` e `.sql`. Documentação, JSON, manifestos, lockfiles, seeds e outros
+arquivos de dados não entram nessa soma.
 
-Essas duas métricas são apenas contexto sobre volume e estratégia de
+Essas métricas são apenas contexto sobre volume e estratégia de
 implementação. Mais ou menos arquivos, linhas ou tokens não significa por si só
 uma solução melhor e **não altera a nota, os critérios de desempate nem a posição
 no ranking**.
