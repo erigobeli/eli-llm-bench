@@ -8,6 +8,35 @@ const resultsDirectory = path.join(repositoryRoot, "results");
 const readmePath = path.join(repositoryRoot, "README.md");
 const startMarker = "<!-- leaderboard:start -->";
 const endMarker = "<!-- leaderboard:end -->";
+const ignoredDeliveryDirectories = new Set([
+  ".cache",
+  ".data",
+  ".git",
+  ".next",
+  ".nyc_output",
+  ".parcel-cache",
+  ".turbo",
+  ".vite",
+  "build",
+  "coverage",
+  "dist",
+  "node_modules",
+  "out",
+  "playwright-report",
+  "test-results"
+]);
+const codeExtensions = new Set([
+  ".cjs",
+  ".css",
+  ".html",
+  ".js",
+  ".jsx",
+  ".mjs",
+  ".scss",
+  ".sql",
+  ".ts",
+  ".tsx"
+]);
 
 function fail(message) {
   throw new Error(message);
@@ -50,6 +79,59 @@ function formatCost(amount, currency) {
   );
   requireValue(currency === "USD", "A moeda pública da v1 precisa ser USD.");
   return `US$ ${amount.toFixed(2)}`;
+}
+
+function formatInteger(value) {
+  requireValue(Number.isInteger(value) && value >= 0, "Valor inteiro inválido no ranking.");
+  return new Intl.NumberFormat("pt-BR").format(value);
+}
+
+function totalTokens(result) {
+  const tokens = result.usage?.tokens;
+  requireValue(tokens, `Tokens ausentes em ${result.runId}`);
+  const categories = ["input", "output", "reasoning", "cached"];
+  return categories.reduce((total, category) => {
+    const value = tokens[category];
+    requireValue(
+      Number.isInteger(value) && value >= 0,
+      `usage.tokens.${category} inválido em ${result.runId}`
+    );
+    return total + value;
+  }, 0);
+}
+
+function measureDelivery(runId) {
+  const projectDirectory = path.join(resultsDirectory, runId, "project");
+  requireValue(fs.existsSync(projectDirectory), `Projeto público ausente em ${runId}`);
+
+  let files = 0;
+  let nonEmptyCodeLines = 0;
+
+  function visit(directory) {
+    const entries = fs
+      .readdirSync(directory, { withFileTypes: true })
+      .sort((left, right) => left.name.localeCompare(right.name));
+
+    for (const entry of entries) {
+      const entryPath = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        if (!ignoredDeliveryDirectories.has(entry.name.toLowerCase())) visit(entryPath);
+        continue;
+      }
+      if (!entry.isFile()) continue;
+
+      files += 1;
+      if (!codeExtensions.has(path.extname(entry.name).toLowerCase())) continue;
+
+      const contents = fs.readFileSync(entryPath, "utf8");
+      nonEmptyCodeLines += contents
+        .split(/\r\n?|\n/)
+        .filter((line) => line.trim().length > 0).length;
+    }
+  }
+
+  visit(projectDirectory);
+  return { files, nonEmptyCodeLines };
 }
 
 function loadResults() {
@@ -102,18 +184,16 @@ function buildLeaderboard(results) {
   const lines = [
     startMarker,
     "",
-    "| # | Modelo | Provider | Raciocínio | Nota | Tempo ativo | Custo | Vídeo |",
-    "|---:|---|---|---|---:|---:|---:|---|"
+    "| # | Modelo | Provider | Raciocínio | Nota | Tempo ativo | Custo | Tokens processados | Entrega |",
+    "|---:|---|---|---|---:|---:|---:|---:|---:|"
   ];
 
   if (results.length === 0) {
-    lines.push("| — | Nenhuma execução oficial publicada | — | — | — | — | — | — |");
+    lines.push("| — | Nenhuma execução oficial publicada | — | — | — | — | — | — | — |");
   } else {
     results.forEach((result, index) => {
-      const video = result.links.video
-        ? `[Assistir](${encodeURI(result.links.video)})`
-        : "—";
       const model = `[${escapeCell(result.model.id)}](./results/${encodeURI(result.runId)}/report.md)`;
+      const delivery = measureDelivery(result.runId);
       lines.push(
         [
           `| ${index + 1}`,
@@ -123,7 +203,8 @@ function buildLeaderboard(results) {
           `${result.score.earned}/100`,
           formatDuration(result.timing.buildTotalMs),
           formatCost(result.cost.participant, result.cost.currency),
-          `${video} |`
+          formatInteger(totalTokens(result)),
+          `${delivery.files} arq. · ${formatInteger(delivery.nonEmptyCodeLines)} LOC |`
         ].join(" | ")
       );
     });
