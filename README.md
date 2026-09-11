@@ -37,10 +37,11 @@ específica.
 | 5 | [anthropic/claude-fable-5.1](./results/claude-fable-5-1__openrouter__2026-09-10/report.md) | openrouter | high | 100/100 | 12m 43s | US$ 4.38 | — |
 | 6 | [anthropic/claude-fable-5](./results/claude-fable-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 9m 46s | US$ 4.53 | — |
 | 7 | [anthropic/claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | openrouter | high | 100/100 | 21m 59s | US$ 6.59 | — |
-| 8 | [anthropic/claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 15s | US$ 1.46 | — |
-| 9 | [anthropic/claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 20s | US$ 2.54 | — |
-| 10 | [openai/gpt-5.6-luna](./results/gpt-5-6-luna__openrouter__2026-09-10/report.md) | openrouter | high | 95/100 | 5m 40s | US$ 0.06 | — |
-| 11 | [anthropic/claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | openrouter | high | 87/100 | 13m 6s | US$ 1.20 | — |
+| 8 | [deepseek/deepseek-v4.1-flash](./results/deepseek-4-1-flash__openrouter__2026-09-10/report.md) | openrouter | high | 96/100 | 3m 59s | US$ 0.04 | — |
+| 9 | [anthropic/claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 15s | US$ 1.46 | — |
+| 10 | [anthropic/claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | openrouter | high | 96/100 | 11m 20s | US$ 2.54 | — |
+| 11 | [openai/gpt-5.6-luna](./results/gpt-5-6-luna__openrouter__2026-09-10/report.md) | openrouter | high | 95/100 | 5m 40s | US$ 0.06 | — |
+| 12 | [anthropic/claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | openrouter | high | 87/100 | 13m 6s | US$ 1.20 | — |
 
 <!-- leaderboard:end -->
 

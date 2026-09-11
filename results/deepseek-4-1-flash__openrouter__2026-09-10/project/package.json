@@ -1,0 +1,35 @@
+{
+  "name": "crmbench-modelo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mini CRM CRMBench Modelo - clientes, negocios e pipeline",
+  "scripts": {
+    "db:setup": "tsx scripts/db-setup.ts",
+    "build": "vite build && tsc -p tsconfig.server.json",
+    "start": "node dist/server/index.js",
+    "test": "vitest run",
+    "dev": "vite",
+    "dev:server": "tsx watch server/index.ts"
+  },
+  "dependencies": {
+    "better-sqlite3": "12.10.0",
+    "express": "^4.21.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/supertest": "^6.0.2",
+    "@vitejs/plugin-react": "^4.3.3",
+    "supertest": "^7.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.4"
+  }
+}
