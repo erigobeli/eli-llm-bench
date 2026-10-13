@@ -184,12 +184,14 @@ function buildLeaderboard(results) {
   const lines = [
     startMarker,
     "",
-    "| # | Modelo | Provider | Raciocínio | Nota | Tempo ativo | Custo | Tokens processados | Arquivos | Linhas (LOC) |",
-    "|---:|---|---|---|---:|---:|---:|---:|---:|---:|"
+    "Todos os testes desta tabela foram realizados com OpenCode, via OpenRouter, com raciocínio `high`.",
+    "",
+    "| # | Modelo | Nota | Tempo ativo | Custo | Tokens processados | Arquivos | Linhas (LOC) |",
+    "|---:|---|---:|---:|---:|---:|---:|---:|"
   ];
 
   if (results.length === 0) {
-    lines.push("| — | Nenhuma execução oficial publicada | — | — | — | — | — | — | — | — |");
+    lines.push("| — | Nenhuma execução oficial publicada | — | — | — | — | — | — |");
   } else {
     results.forEach((result, index) => {
       const model = `[${escapeCell(result.model.id)}](./results/${encodeURI(result.runId)}/report.md)`;
@@ -198,8 +200,6 @@ function buildLeaderboard(results) {
         [
           `| ${index + 1}`,
           model,
-          escapeCell(result.model.provider),
-          escapeCell(result.model.reasoning),
           `${result.score.earned}/100`,
           formatDuration(result.timing.buildTotalMs),
           formatCost(result.cost.participant, result.cost.currency),
