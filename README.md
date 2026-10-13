@@ -30,24 +30,24 @@ específica.
 
 Todos os testes desta tabela foram realizados com OpenCode, via OpenRouter, com raciocínio `high`.
 
-| # | Modelo | Nota | Tempo ativo | Custo | Tokens processados | Arquivos | Linhas (LOC) |
+| # | Modelo | Nota | Tempo ativo (mm:ss) | Custo (USD) | Tokens processados | Arquivos | Linhas (LOC) |
 |---:|---|---:|---:|---:|---:|---:|---:|
-| 1 | [gpt-6-luna](./results/gpt-6-luna__openrouter__2026-10-13/report.md) | 100/100 | 4m 40s | US$ 0.03 | 643.271 | 19 | 919 |
-| 2 | [claude-haiku-5.5](./results/claude-haiku-5-5__openrouter__2026-10-13/report.md) | 100/100 | 11m 15s | US$ 0.10 | 1.778.843 | 28 | 2.500 |
-| 3 | [gpt-5.6-sol](./results/gpt-5-6-sol__openrouter__2026-09-10/report.md) | 100/100 | 6m 20s | US$ 0.46 | 578.491 | 20 | 767 |
-| 4 | [gpt-5.6-terra](./results/gpt-5-terra__openrouter__2026-09-10/report.md) | 100/100 | 3m 58s | US$ 0.51 | 688.525 | 16 | 393 |
-| 5 | [gpt-6.1-sol](./results/gpt-6-1-sol__openrouter__2026-10-13/report.md) | 100/100 | 12m 43s | US$ 0.61 | 1.011.797 | 26 | 911 |
-| 6 | [gemini-3.8-flash](./results/gemini-3-8-flash__openrouter__2026-09-10/report.md) | 100/100 | 11m 15s | US$ 0.66 | 3.155.016 | 27 | 3.186 |
-| 7 | [claude-opus-5.5](./results/claude-opus-5-5__openrouter__2026-10-13/report.md) | 100/100 | 9m 56s | US$ 2.07 | 2.295.205 | 24 | 2.896 |
-| 8 | [gpt-6-astra](./results/gpt-6-astra__openrouter__2026-09-06/report.md) | 100/100 | 15m 46s | US$ 4.34 | 1.221.044 | 30 | 4.649 |
-| 9 | [claude-fable-5.1](./results/claude-fable-5-1__openrouter__2026-09-10/report.md) | 100/100 | 12m 43s | US$ 4.38 | 2.412.418 | 32 | 2.956 |
-| 10 | [claude-fable-5](./results/claude-fable-5__openrouter__2026-07-29/report.md) | 100/100 | 9m 46s | US$ 4.53 | 1.456.914 | 24 | 2.637 |
-| 11 | [claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | 100/100 | 21m 59s | US$ 6.59 | 6.545.373 | 29 | 3.869 |
-| 12 | [deepseek-v4.1-flash](./results/deepseek-4-1-flash__openrouter__2026-09-10/report.md) | 96/100 | 3m 59s | US$ 0.04 | 1.038.979 | 33 | 3.031 |
-| 13 | [claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | 96/100 | 11m 15s | US$ 1.46 | 3.449.491 | 37 | 2.747 |
-| 14 | [claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | 96/100 | 11m 20s | US$ 2.54 | 1.909.705 | 28 | 2.572 |
-| 15 | [gpt-5.6-luna](./results/gpt-5-6-luna__openrouter__2026-09-10/report.md) | 95/100 | 5m 40s | US$ 0.06 | 921.976 | 17 | 421 |
-| 16 | [claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | 87/100 | 13m 6s | US$ 1.20 | 8.459.057 | 29 | 2.164 |
+| 1 | [gpt-6-luna](./results/gpt-6-luna__openrouter__2026-10-13/report.md) | 100/100 | 04:40 | 0.03 | 643.271 | 19 | 919 |
+| 2 | [claude-haiku-5.5](./results/claude-haiku-5-5__openrouter__2026-10-13/report.md) | 100/100 | 11:15 | 0.10 | 1.778.843 | 28 | 2.500 |
+| 3 | [gpt-5.6-sol](./results/gpt-5-6-sol__openrouter__2026-09-10/report.md) | 100/100 | 06:20 | 0.46 | 578.491 | 20 | 767 |
+| 4 | [gpt-5.6-terra](./results/gpt-5-terra__openrouter__2026-09-10/report.md) | 100/100 | 03:58 | 0.51 | 688.525 | 16 | 393 |
+| 5 | [gpt-6.1-sol](./results/gpt-6-1-sol__openrouter__2026-10-13/report.md) | 100/100 | 12:43 | 0.61 | 1.011.797 | 26 | 911 |
+| 6 | [gemini-3.8-flash](./results/gemini-3-8-flash__openrouter__2026-09-10/report.md) | 100/100 | 11:15 | 0.66 | 3.155.016 | 27 | 3.186 |
+| 7 | [claude-opus-5.5](./results/claude-opus-5-5__openrouter__2026-10-13/report.md) | 100/100 | 09:56 | 2.07 | 2.295.205 | 24 | 2.896 |
+| 8 | [gpt-6-astra](./results/gpt-6-astra__openrouter__2026-09-06/report.md) | 100/100 | 15:46 | 4.34 | 1.221.044 | 30 | 4.649 |
+| 9 | [claude-fable-5.1](./results/claude-fable-5-1__openrouter__2026-09-10/report.md) | 100/100 | 12:43 | 4.38 | 2.412.418 | 32 | 2.956 |
+| 10 | [claude-fable-5](./results/claude-fable-5__openrouter__2026-07-29/report.md) | 100/100 | 09:46 | 4.53 | 1.456.914 | 24 | 2.637 |
+| 11 | [claude-opus-5](./results/claude-opus-5__openrouter__2026-07-29/report.md) | 100/100 | 21:59 | 6.59 | 6.545.373 | 29 | 3.869 |
+| 12 | [deepseek-v4.1-flash](./results/deepseek-4-1-flash__openrouter__2026-09-10/report.md) | 96/100 | 03:59 | 0.04 | 1.038.979 | 33 | 3.031 |
+| 13 | [claude-sonnet-5](./results/claude-sonnet-5__openrouter__2026-07-29/report.md) | 96/100 | 11:15 | 1.46 | 3.449.491 | 37 | 2.747 |
+| 14 | [claude-opus-4.8](./results/claude-opus-4-8__openrouter__2026-07-29/report.md) | 96/100 | 11:20 | 2.54 | 1.909.705 | 28 | 2.572 |
+| 15 | [gpt-5.6-luna](./results/gpt-5-6-luna__openrouter__2026-09-10/report.md) | 95/100 | 05:40 | 0.06 | 921.976 | 17 | 421 |
+| 16 | [claude-haiku-4.5](./results/claude-haiku-4-5__openrouter__2026-07-29/report.md) | 87/100 | 13:06 | 1.20 | 8.459.057 | 29 | 2.164 |
 
 <!-- leaderboard:end -->
 

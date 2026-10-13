@@ -64,12 +64,9 @@ function formatDuration(milliseconds) {
     "timing.buildTotalMs precisa ser um inteiro não negativo."
   );
   const totalSeconds = Math.round(milliseconds / 1000);
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
-  if (hours > 0) return `${hours}h ${minutes}m ${seconds}s`;
-  if (minutes > 0) return `${minutes}m ${seconds}s`;
-  return `${seconds}s`;
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
 function formatCost(amount, currency) {
@@ -78,7 +75,7 @@ function formatCost(amount, currency) {
     "cost.participant precisa ser um número não negativo."
   );
   requireValue(currency === "USD", "A moeda pública da v1 precisa ser USD.");
-  return `US$ ${amount.toFixed(2)}`;
+  return amount.toFixed(2);
 }
 
 function formatInteger(value) {
@@ -186,7 +183,7 @@ function buildLeaderboard(results) {
     "",
     "Todos os testes desta tabela foram realizados com OpenCode, via OpenRouter, com raciocínio `high`.",
     "",
-    "| # | Modelo | Nota | Tempo ativo | Custo | Tokens processados | Arquivos | Linhas (LOC) |",
+    "| # | Modelo | Nota | Tempo ativo (mm:ss) | Custo (USD) | Tokens processados | Arquivos | Linhas (LOC) |",
     "|---:|---|---:|---:|---:|---:|---:|---:|"
   ];
 
