@@ -194,7 +194,7 @@ function buildLeaderboard(results) {
     lines.push("| — | Nenhuma execução oficial publicada | — | — | — | — | — | — |");
   } else {
     results.forEach((result, index) => {
-      const model = `[${escapeCell(result.model.id)}](./results/${encodeURI(result.runId)}/report.md)`;
+      const model = `[${escapeCell(result.model.id.split("/").at(-1))}](./results/${encodeURI(result.runId)}/report.md)`;
       const delivery = measureDelivery(result.runId);
       lines.push(
         [
