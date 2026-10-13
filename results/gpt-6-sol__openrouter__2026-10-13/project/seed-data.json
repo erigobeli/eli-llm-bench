@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "clients": [
+    {
+      "id": 1,
+      "name": "Nébula Tecnologia",
+      "email": "contato@nebula.com.br",
+      "company": "Nébula Tecnologia LTDA",
+      "createdAt": "2026-07-20T12:00:00.000Z",
+      "updatedAt": "2026-07-20T12:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Marina Costa",
+      "email": "marina@example.com",
+      "company": null,
+      "createdAt": "2026-07-19T12:00:00.000Z",
+      "updatedAt": "2026-07-19T12:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "Horizonte Arquitetura",
+      "email": "oi@horizonte.com.br",
+      "company": "Horizonte Arquitetura",
+      "createdAt": "2026-07-18T12:00:00.000Z",
+      "updatedAt": "2026-07-18T12:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "name": "Rafael Martins",
+      "email": "rafael@example.com",
+      "company": null,
+      "createdAt": "2026-07-17T12:00:00.000Z",
+      "updatedAt": "2026-07-17T12:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "name": "Aurora Saúde",
+      "email": "comercial@aurora.com.br",
+      "company": "Aurora Saúde Integrada",
+      "createdAt": "2026-07-16T12:00:00.000Z",
+      "updatedAt": "2026-07-16T12:00:00.000Z"
+    }
+  ],
+  "deals": [
+    { "id": 1, "title": "Site institucional", "valueInCents": 120000, "clientId": 1, "stage": "new", "createdAt": "2026-07-21T12:00:00.000Z", "updatedAt": "2026-07-21T12:00:00.000Z" },
+    { "id": 2, "title": "Consultoria de conteúdo", "valueInCents": 85000, "clientId": 2, "stage": "new", "createdAt": "2026-07-20T12:00:00.000Z", "updatedAt": "2026-07-20T12:00:00.000Z" },
+    { "id": 3, "title": "Projeto de automação", "valueInCents": 200000, "clientId": 3, "stage": "contact", "createdAt": "2026-07-19T12:00:00.000Z", "updatedAt": "2026-07-19T12:00:00.000Z" },
+    { "id": 4, "title": "Treinamento de equipe", "valueInCents": 75000, "clientId": 4, "stage": "contact", "createdAt": "2026-07-18T12:00:00.000Z", "updatedAt": "2026-07-18T12:00:00.000Z" },
+    { "id": 5, "title": "Aplicativo de agendamento", "valueInCents": 350000, "clientId": 5, "stage": "proposal", "createdAt": "2026-07-17T12:00:00.000Z", "updatedAt": "2026-07-17T12:00:00.000Z" },
+    { "id": 6, "title": "Redesign da marca", "valueInCents": 180000, "clientId": 1, "stage": "proposal", "createdAt": "2026-07-16T12:00:00.000Z", "updatedAt": "2026-07-16T12:00:00.000Z" },
+    { "id": 7, "title": "Portal do cliente", "valueInCents": 500000, "clientId": 3, "stage": "won", "createdAt": "2026-07-15T12:00:00.000Z", "updatedAt": "2026-07-15T12:00:00.000Z" },
+    { "id": 8, "title": "Campanha de lançamento", "valueInCents": 95000, "clientId": 2, "stage": "won", "createdAt": "2026-07-14T12:00:00.000Z", "updatedAt": "2026-07-14T12:00:00.000Z" }
+  ]
+}
