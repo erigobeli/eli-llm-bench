@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "1.0.0",
+  "runId": "gpt-6-luna__openrouter__2026-10-13",
+  "benchmarkVersion": "1.0.0-draft",
+  "createdAt": "2026-10-13T21:59:45.284Z",
+  "model": {
+    "id": "openai/gpt-6-luna",
+    "provider": "openrouter",
+    "reasoning": "high",
+    "harness": "OpenCode 1.19.0"
+  },
+  "resultStatus": "COMPLETE",
+  "terminationReason": "completed",
+  "score": {
+    "earned": 100,
+    "maximum": 100
+  },
+  "timing": {
+    "evaluationTotalMs": 7761,
+    "buildTotalMs": 279894,
+    "startedAt": "2026-10-13T21:51:19.9840000+00:00",
+    "endedAt": "2026-10-13T21:55:59.8780000+00:00"
+  },
+  "cost": {
+    "limit": 8,
+    "currency": "USD",
+    "source": "OpenCode session export / OpenRouter",
+    "participant": 0.02700116
+  },
+  "usage": {
+    "turns": 18,
+    "toolCalls": 22,
+    "tokens": {
+      "output": 24506.0,
+      "reasoning": 6068.0,
+      "cached": 564101.0,
+      "input": 48596.0
+    }
+  },
+  "checks": [
+    {
+      "status": "passed",
+      "summary": "As dependências foram instaladas sem flags de contorno.",
+      "id": "setup.install",
+      "pointsAwarded": 2,
+      "evidence": "npm install concluiu em 10539 ms com a stack obrigatória.",
+      "pointsAvailable": 2
+    },
+    {
+      "status": "passed",
+      "summary": "O banco foi recriado duas vezes com o seed correto.",
+      "id": "setup.database",
+      "pointsAwarded": 3,
+      "evidence": "db:setup recriou duas vezes o banco isolado indicado por DB_PATH.",
+      "pointsAvailable": 3
+    },
+    {
+      "status": "passed",
+      "summary": "O frontend e o servidor foram compilados para produção.",
+      "id": "setup.build",
+      "pointsAwarded": 4,
+      "evidence": "O build de produção concluiu em 3901 ms.",
+      "pointsAvailable": 4
+    },
+    {
+      "status": "passed",
+      "summary": "A aplicação iniciou e serviu API e interface na mesma origem.",
+      "id": "setup.start",
+      "pointsAwarded": 5,
+      "evidence": "npm start serviu a API e a interface na mesma origem.",
+      "pointsAvailable": 5
+    },
+    {
+      "status": "passed",
+      "summary": "Um cliente válido foi criado e persistido.",
+      "id": "clients.create",
+      "pointsAwarded": 5,
+      "evidence": "Cliente 6 foi criado com campos normalizados e timestamps válidos.",
+      "pointsAvailable": 5
+    },
+    {
+      "status": "passed",
+      "summary": "A listagem, a busca e a paginação de clientes refletiram o banco.",
+      "id": "clients.read",
+      "pointsAwarded": 4,
+      "evidence": "Listagem, busca case-insensitive e páginas de clientes refletiram o banco.",
+      "pointsAvailable": 4
+    },
+    {
+      "status": "passed",
+      "summary": "A atualização parcial preservou os demais campos.",
+      "id": "clients.update",
+      "pointsAwarded": 4,
+      "evidence": "A edição parcial mudou o nome, preservou o e-mail e atualizou o timestamp.",
+      "pointsAvailable": 4
+    },
+    {
+      "status": "passed",
+      "summary": "A exclusão funcionou sem corromper negócios relacionados.",
+      "id": "clients.delete",
+      "pointsAwarded": 5,
+      "evidence": "Cliente sem vínculo foi excluído; cliente com negócio recebeu 409 sem cascata.",
+      "pointsAvailable": 5
+    },
+    {
+      "status": "passed",
+      "summary": "Um negócio válido foi criado e ligado ao cliente correto.",
+      "id": "deals.create",
+      "pointsAwarded": 6,
+      "evidence": "Negócio 9 foi criado e ligado ao cliente 6.",
+      "pointsAvailable": 6
+    },
+    {
+      "status": "passed",
+      "summary": "A listagem, a busca, os filtros e a paginação de negócios refletiram o banco.",
+      "id": "deals.read",
+      "pointsAwarded": 4,
+      "evidence": "Listagem, busca, filtros combinados e paginação de negócios refletiram o banco.",
+      "pointsAvailable": 4
+    },
+    {
+      "status": "passed",
+      "summary": "A atualização parcial do negócio persistiu corretamente.",
+      "id": "deals.update",
+      "pointsAwarded": 5,
+      "evidence": "A edição parcial persistiu a etapa e preservou os demais campos.",
+      "pointsAvailable": 5
+    },
+    {
+      "status": "passed",
+      "summary": "O negócio solicitado foi excluído sem afetar outros dados.",
+      "id": "deals.delete",
+      "pointsAwarded": 4,
+      "evidence": "O negócio solicitado foi excluído sem remover clientes ou outros dados.",
+      "pointsAvailable": 4
+    },
+    {
+      "status": "passed",
+      "summary": "Dados e relacionamentos inválidos foram recusados.",
+      "id": "deals.validation",
+      "pointsAwarded": 4,
+      "evidence": "Título, valor, etapa e relacionamento inválidos foram recusados sem gravação parcial.",
+      "pointsAvailable": 4
+    },
+    {
+      "status": "passed",
+      "summary": "Os indicadores acompanharam exatamente os dados persistidos.",
+      "id": "metrics.accuracy",
+      "pointsAwarded": 8,
+      "evidence": "Os indicadores conferiram antes e depois de criar, fechar e excluir um negócio.",
+      "pointsAvailable": 8
+    },
+    {
+      "status": "passed",
+      "summary": "As quatro etapas e seus cartões apareceram na ordem correta.",
+      "id": "pipeline.render",
+      "pointsAwarded": 6,
+      "evidence": "As quatro etapas, na ordem correta, exibiram todos os negócios persistidos.",
+      "pointsAvailable": 6
+    },
+    {
+      "status": "passed",
+      "summary": "A nova etapa permaneceu salva após reiniciar o servidor.",
+      "id": "pipeline.persistence",
+      "pointsAwarded": 6,
+      "evidence": "A etapa mudou pela interface e permaneceu no SQLite após reiniciar o servidor.",
+      "pointsAvailable": 6
+    },
+    {
+      "status": "passed",
+      "summary": "Um cartão pôde ser arrastado e permaneceu na nova etapa.",
+      "id": "pipeline.drag_drop",
+      "pointsAwarded": 5,
+      "evidence": "O cartão foi arrastado e permaneceu na nova coluna após reiniciar o servidor.",
+      "pointsAvailable": 5
+    },
+    {
+      "status": "passed",
+      "summary": "CRUD, busca, paginação visível de 4 itens e visualização dos negócios do cliente funcionaram.",
+      "id": "ui.client_flow",
+      "pointsAwarded": 5,
+      "evidence": "Paginação, busca, negócios relacionados e CRUD de clientes funcionaram pela interface.",
+      "pointsAvailable": 5
+    },
+    {
+      "status": "passed",
+      "summary": "CRUD, busca, filtros e paginação visível de 4 itens funcionaram pela interface.",
+      "id": "ui.deal_flow",
+      "pointsAwarded": 5,
+      "evidence": "Paginação, busca, filtros combinados e CRUD de negócios funcionaram pela interface.",
+      "pointsAvailable": 5
+    },
+    {
+      "status": "passed",
+      "summary": "Erros e estados foram visíveis e a interface respondeu bem no celular.",
+      "id": "ui.feedback",
+      "pointsAwarded": 4,
+      "evidence": "Erro, sucesso, confirmação e estado vazio ficaram visíveis, sem overflow nas duas viewports.",
+      "pointsAvailable": 4
+    },
+    {
+      "status": "passed",
+      "summary": "O produto foi identificado como CRMBench Modelo.",
+      "id": "ui.app_name",
+      "pointsAwarded": 1,
+      "evidence": "O título do navegador e a marca visível usam CRMBench Modelo.",
+      "pointsAvailable": 1
+    },
+    {
+      "status": "passed",
+      "summary": "Os testes essenciais passaram e o README explicou os comandos.",
+      "id": "quality.tests_docs",
+      "pointsAwarded": 5,
+      "evidence": "4 testes passaram e o README documentou os cinco comandos obrigatórios.",
+      "pointsAvailable": 5
+    }
+  ],
+  "links": {
+    "video": null,
+    "project": "./project",
+    "report": "./report.md"
+  }
+}

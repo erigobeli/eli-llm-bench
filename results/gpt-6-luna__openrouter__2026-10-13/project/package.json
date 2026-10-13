@@ -1,0 +1,35 @@
+{
+  "name": "crmbench-modelo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "db:setup": "tsx scripts/setup-db.ts",
+    "dev": "concurrently \"tsx watch src/server/index.ts\" \"vite\"",
+    "build": "tsc -p tsconfig.server.json && vite build",
+    "start": "node dist-server/server/index.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "better-sqlite3": "12.10.0",
+    "express": "^5.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.7",
+    "@types/supertest": "^6.0.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "concurrently": "^9.2.0",
+    "supertest": "^7.1.1",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
+  }
+}
